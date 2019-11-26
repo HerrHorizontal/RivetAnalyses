@@ -93,14 +93,90 @@ namespace Rivet {
       vector<DressedLepton> muons = apply<DressedLeptons>(event, "dressed_leptons").dressedLeptons(Cuts::abspid::MUON && Cuts::abseta < 2.4 && Cuts::pT > 25*GeV);
       Jets jets = apply<JetAlg>(event, "Jets").jetsByPt(Cuts::absrap < 2.4 && Cuts::pT > 0.1*GeV);
 
-      //// Require at least two opposite sign muons compatible with Z-boson mass
+      //// Require at least two opposite sign muons compatible with Z-boson mass and keep the pair closest to Zboson mass
+      bool _bosoncandidateexists = False;
+      double _massdiff = 20*GeV;
+      DressedLepton _muon;
+      DressedLepton _antimuon;
+
       if (muons.size() < 2) vetoEvent;
-      for () {
-        //// Require at least one opposite charge pair
-        if (muons[i].pid() != -muons[j].pid()) vetoEvent;
-        //// Require invariant mass of both muons to be compatibale with Z-mass
-        if (!(71.1876*GeV <= (muons[0].mom()+muons[1].mom()).mass() <= 111.1876*GeV)) vetoEvent;
+
+      for (int it = 1; it < muons.size(); ++it) {
+        for (int jt = 0; jt < it; ++jt) {
+          double _candidatemass = (muons.at(it).mom() + muons.at(jt).mom()).mass();
+          if (muons.at(it).pid() == -muons.at(jt).pid() && abs(_candidatemass - 91.1876*GeV) < _massdiff) {
+            _bosoncandidateexists = True;
+            _massdiff = abs(_candidatemass - 91.1876*GeV);
+            if (muons.at(it).pid() > 0) {
+              _muon = muons.at(it);
+              _antimuon = muons.at(jt);
+            }
+            else {
+              _muon = muons.at(jt);
+              _antimuon = muons.at(it);
+            }
+          }
+          else continue;
+        }
       }
+
+      if (!(_bosoncandidateexists)) vetoEvent;
+
+      //// Fill muon related histograms
+      _hist_NMus -> fill(muons.size());
+
+      double phi_Mu = _muon.phi();
+      _hist_MuMinusPhi -> fill(phi_Mu);
+      double phi_AntiMu = _antimuon.phi();
+      _hist_MuPlusPhi -> fill(phi_AntiMu);
+
+      double eta_Mu = _muon.eta();
+      _hist_MuMinusEta -> fill(eta_Mu);
+      double eta_AntiMu = _antimuon.eta();
+      _hist_MuPlusEta -> fill(eta_AntiMu);
+
+      double pT_Mu = _muon.pT()/GeV;
+      _hist_MuMinusPt -> fill(pT_Mu);
+      double pT_AntiMu = _antimuon.pT()/GeV;
+      _hist_MuPlusPt -> fill(pT_AntiMu);
+
+      //// Fill Zboson related histograms
+      double m_Z = (_muon.mom() + _antimuon.mom()).mass()/GeV;
+      _hist_ZM -> fill(m_Z);
+
+      double phi_Z = (_muon.mom() + _antimuon.mom()).phi();
+      _hist_ZPhi -> fill(phi_Z);
+
+      double rap_Z = (_muon.mom() + _antimuon.mom()).rap();
+      _hist_ZY -> fill(rap_Z);
+
+      double pT_Z = (_muon.mom() + _antimuon.mom()).pT()/GeV;
+      _hist_ZPt -> fill(pT_Z);
+
+      //// Remove jet-muon overlap
+      idiscardIfAnyDeltaRLess(jets, muons, 0.3);
+
+      //// Fill jet related histograms
+      _hist_NJets -> fill(jets.size());
+
+      _hist_Jet1Phi -> fill(jets.at(0).phi());
+      _hist_Jet2Phi -> fill(jets.at(1).phi());
+      _hist_Jet3Phi -> fill(jets.at(2).phi());
+
+      _hist_Jet1Eta -> fill(jets.at(0).eta());
+
+      _hist_Jet1Y -> fill(jets.at(0).rap());
+      _hist_Jet2Y -> fill(jets.at(1).rap());
+      _hist_Jet3Y -> fill(jets.at(3).rap());
+
+      double pT_aveJet = sum(jets, pT, 0)/GeV/jets.size();
+      _hist_JetAvePt -> fill(pT_aveJet);
+
+      _hist_Jet1Pt -> fill(jets.at(0).pT()/GeV);
+      _hist_Jet2Pt -> fill(jets.at(1).pT()/GeV);
+      _hist_Jet3Pt -> fill(jets.at(2).pT()/GeV);
+
+      
 
     }
 
