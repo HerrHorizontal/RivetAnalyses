@@ -1,7 +1,13 @@
 // -*- C++ -*-
 #include "Rivet/Analysis.hh"
 #include "Rivet/Projections/FinalState.hh"
+#include "Rivet/Projections/ChargedFinalState.hh"
+#include "Rivet/Projections/PromptFinalState.hh"
+#include "Rivet/Projections/VetoedFinalState.hh"
+#include "Rivet/Projections/DressedLeptons.hh"
 #include "Rivet/Projections/FastJets.hh"
+#include "Rivet/Projections/JetAlg.hh"
+#include "Rivet/Projections/MissingMomentum.hh"
 
 namespace Rivet {
 
@@ -29,39 +35,56 @@ namespace Rivet {
       PromptFinalState bare_leps(Cuts::abspid == PID::MUON || Cuts::abspid == PID::ELECTRON);
       declare(bare_leps, "bare_leptons");
       PromptFinalState photons(Cuts::abspid == PID::PHOTON);
-      DressedLeptons dressed_leps(photons, bare_leps, 0.1, Cuts::abseta < 2.5 && Cuts::pT > 10*GeV);
+      DressedLeptons dressed_leps(photons, bare_leps, 0.1, Cuts::abseta < 2.4 && Cuts::pT > 25*GeV);
       declare(dressed_leps, "dressed_leptons");
       /// jet collection
-      FastJets jets(ffs, FastJets::ANTIKT, 0.4, JetAlg::Invisibles::NONE)
+      FastJets jets(ffs, FastJets::ANTIKT, 0.4);
       declare(jets, "Jets");
 
       /// out of acceptance particles treat as invisible
-      VetoedFinalState fs_onlyinacc(ffs, (Cuts::abspid::MUON && Cuts::abseta > 2.4) || 
-                                    (Cuts::abspid::PHOTON && Cuts::abseta > 3.0) || 
-                                    (Cuts::abspid::ELECTRON && Cuts::abseta > 3.0));
+      VetoedFinalState fs_onlyinacc(ffs, (Cuts::abspid ==  PID::MUON && Cuts::abseta > 2.4) || 
+                                    (Cuts::abspid == PID::PHOTON && Cuts::abseta > 3.0) || 
+                                    (Cuts::abspid == PID::ELECTRON && Cuts::abseta > 3.0));
       declare(MissingMomentum(fs_onlyinacc), "invisibles");
 
       /// Book histograms
       //// Book histograms with equidistant bins
-      book(_h["NMus"], "N_Muons", 10, 0, 10);
-      //_hist_NMus = bookHisto1D("NMuons", 10, 0, 10);
-      book(_h["MuPlusPt"], "pT_Mu+", 11, 25, 300);
-      book(_h["MuPlusEta"], "eta_Mu+", 24, -2.4, 2.4);
-      book(_h["MuPlusPhi"], "phi_Mu+", 30, -3.14, 3.14);
-      book(_h("MuMinusPt"), "pT_Mu-", 11, 25, 300);
-      book(_h["MuMinusEta"], "eta_Mu-", 24, -2.4, 2.4);
-      book(_h["MuMinusPhi"], "phi_Mu-", 30, -3.14, 3.14);
-      book(_h["ZY", "y_Z", 12, -2.4, 2.4);
-      book(_h["ZM"], "m_Z", 20, 71, 111);
-      book(_h["ZPhi"], "phi_Z", 30, -3.14159, 3.14159);
-      book(_h["NJets"], "N_Jets", 10, 0, 10);
-      book(_h["Jet1Y"], "y_Jet1", 12, -2.4, 2.4);
-      book(_h["Jet1Phi"], "phi_Jet1", 31, -3.142, 3.142);
-      book(_h["Jet2Y"], "y_Jet2", 30, -2.4, 2.4);
-      book(_h["Jet2Phi"], "phi_Jet2", 31, -3.142, 3.142);
-      book(_h["Jet3Y"], "y_Jet3", 30, -2.4, 2.4);
-      book(_h["Jet3Phi"], "phi_Jet3", 31, -3.142, 3.142);
-      book(_h["MET"], "MET", 70, 0, 350);
+      _hist_NMus = bookHisto1D("NMuons", 10, 0, 10);
+      _hist_MuPlusPt = bookHisto1D("MuPlusPt", 11, 25, 300);
+      _hist_MuPlusEta = bookHisto1D("MuPlusEta", 24, -2.4, 2.4);
+      _hist_MuPlusPhi = bookHisto1D("MuPlusPhi", 30, -3.14, 3.14);
+      _hist_MuMinusPt = bookHisto1D("MuMinusPt", 11, 25, 300);
+      _hist_MuMinusEta = bookHisto1D("MuMinusEta", 24, -2.4, 2.4);
+      _hist_MuMinusPhi = bookHisto1D("MuMinusPhi", 30, -3.14, 3.14);
+      _hist_ZY = bookHisto1D("ZY", 12, -2.4, 2.4);
+      _hist_ZM = bookHisto1D("ZM", 20, 71, 111);
+      _hist_ZPhi = bookHisto1D("ZPhi", 30, -3.14159, 3.14159);
+      _hist_NJets = bookHisto1D("NJets", 10, 0, 10);
+      _hist_Jet1Y = bookHisto1D("Jet1Y", 12, -2.4, 2.4);
+      _hist_Jet1Phi = bookHisto1D("Jet1Phi", 31, -3.142, 3.142);
+      _hist_Jet2Y = bookHisto1D("Jet2Y", 30, -2.4, 2.4);
+      _hist_Jet2Phi = bookHisto1D("Jet2Phi", 31, -3.142, 3.142);
+      _hist_Jet3Y = bookHisto1D("Jet3Y", 30, -2.4, 2.4);
+      _hist_Jet3Phi = bookHisto1D("Jet1Phi", 31, -3.142, 3.142);
+      _hist_MET = bookHisto1D("MET", 70, 0, 350);
+//      book(_h["NMus"], "N_Muons", 10, 0, 10);
+//      book(_h["MuPlusPt"], "pT_Mu+", 11, 25, 300);
+//      book(_h["MuPlusEta"], "eta_Mu+", 24, -2.4, 2.4);
+//      book(_h["MuPlusPhi"], "phi_Mu+", 30, -3.14, 3.14);
+//      book(_h("MuMinusPt"), "pT_Mu-", 11, 25, 300);
+//      book(_h["MuMinusEta"], "eta_Mu-", 24, -2.4, 2.4);
+//      book(_h["MuMinusPhi"], "phi_Mu-", 30, -3.14, 3.14);
+//      book(_h["ZY", "y_Z", 12, -2.4, 2.4);
+//      book(_h["ZM"], "m_Z", 20, 71, 111);
+//      book(_h["ZPhi"], "phi_Z", 30, -3.14159, 3.14159);
+//      book(_h["NJets"], "N_Jets", 10, 0, 10);
+//      book(_h["Jet1Y"], "y_Jet1", 12, -2.4, 2.4);
+//      book(_h["Jet1Phi"], "phi_Jet1", 31, -3.142, 3.142);
+//      book(_h["Jet2Y"], "y_Jet2", 30, -2.4, 2.4);
+//      book(_h["Jet2Phi"], "phi_Jet2", 31, -3.142, 3.142);
+//      book(_h["Jet3Y"], "y_Jet3", 30, -2.4, 2.4);
+//      book(_h["Jet3Phi"], "phi_Jet3", 31, -3.142, 3.142);
+//      book(_h["MET"], "MET", 70, 0, 350);
 
       //// Book histograms with variable bin size
       ///// Define bin edges
@@ -77,13 +100,19 @@ namespace Rivet {
                                              5.191};
       vector<double> binedges_PhiStarEta = {0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2, 3, 4, 5, 7, 10, 15, 20, 30, 50};
       ///// Book Histograms with vector
-      book(_h["ZPt"], "pT_Z", binedges_ZPt);
-      book(_h["Jet1Pt"], "pZ_Jet1", binedges_Jet1Pt);
-      book(_h["Jet2Pt"], "pT_Jet2", binedges_Jet2Pt);
-      book(_h["Jet3Pt"], "pT_Jet3", binedges_Jet3Pt);
-      book(_h["JetAvePt"], "<pT>_Jets", binedges_JetAvePt);
-      book(_h["Jet1Eta"], "eta_Jet1", binedges_Jet1Eta);
-      book(_h["PhiStarEta"], "Phi*_eta", binedges_PhiStarEta);
+      _hist_ZPt = bookHisto1D("ZPt", binedges_ZPt);
+      _hist_Jet1Pt = bookHisto1D("ZPt", binedges_Jet1Pt);
+      _hist_Jet2Pt = bookHisto1D("ZPt", binedges_Jet2Pt);
+      _hist_Jet3Pt = bookHisto1D("ZPt", binedges_Jet3Pt);
+      _hist_JetAvePt = bookHisto1D("ZPt", binedges_JetAvePt);
+      _hist_Jet1Eta = bookHisto1D("ZPt", binedges_Jet1Eta);
+//      book(_h["ZPt"], "pT_Z", binedges_ZPt);
+//      book(_h["Jet1Pt"], "pZ_Jet1", binedges_Jet1Pt);
+//      book(_h["Jet2Pt"], "pT_Jet2", binedges_Jet2Pt);
+//      book(_h["Jet3Pt"], "pT_Jet3", binedges_Jet3Pt);
+//      book(_h["JetAvePt"], "<pT>_Jets", binedges_JetAvePt);
+//      book(_h["Jet1Eta"], "eta_Jet1", binedges_Jet1Eta);
+//      book(_h["PhiStarEta"], "Phi*_eta", binedges_PhiStarEta);
 
     }
 
@@ -92,7 +121,9 @@ namespace Rivet {
     void analyze(const Event& event) {
 
       /// Find muons and jets
-      vector<DressedLepton> muons = apply<DressedLeptons>(event, "dressed_leptons").dressedLeptons(Cuts::abspid::MUON && Cuts::abseta < 2.4 && Cuts::pT > 25*GeV);
+      //vector<DressedLepton> muons = apply<DressedLeptons>(event, "dressed_leptons").dressedLeptons(Cuts::abspid == PID::MUON && Cuts::abseta < 2.4 && Cuts::pT > 25*GeV);
+      vector<DressedLepton> muons = apply<DressedLeptons>(event, "dressed_leptons").dressedLeptons();
+
       Jets jets = apply<JetAlg>(event, "Jets").jetsByPt(Cuts::absrap < 2.4 && Cuts::pT > 0.1*GeV);
 
       /// Remove jet-muon overlap
@@ -102,18 +133,18 @@ namespace Rivet {
       if (jets.at(0).pT() <= 20*GeV) vetoEvent;
 
       /// Require at least two opposite sign muons compatible with Z-boson mass and keep the pair closest to Zboson mass
-      bool _bosoncandidateexists = False;
+      bool _bosoncandidateexists = false;
       double _massdiff = 20*GeV;
-      DressedLepton _muon;
-      DressedLepton _antimuon;
+      DressedLepton _muon = muons.at(0);
+      DressedLepton _antimuon = muons.at(0);
 
       if (muons.size() < 2) vetoEvent;
 
-      for (int it = 1; it < muons.size(); ++it) {
-        for (int jt = 0; jt < it; ++jt) {
+      for (unsigned int it = 1; it < muons.size(); ++it) {
+        for (unsigned int jt = 0; jt < it; ++jt) {
           double _candidatemass = (muons.at(it).mom() + muons.at(jt).mom()).mass();
           if (muons.at(it).pid() == -muons.at(jt).pid() && abs(_candidatemass - 91.1876*GeV) < _massdiff) {
-            _bosoncandidateexists = True;
+            _bosoncandidateexists = true;
             _massdiff = abs(_candidatemass - 91.1876*GeV);
             if (muons.at(it).pid() > 0) {
               _muon = muons.at(it);
