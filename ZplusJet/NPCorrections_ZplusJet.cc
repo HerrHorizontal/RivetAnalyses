@@ -130,6 +130,7 @@ namespace Rivet {
       idiscardIfAnyDeltaRLess(jets, muons, 0.3);
 
       /// Require at least one hard jet
+      if (jets.size()<1) vetoEvent;      
       if (jets.at(0).pT() <= 20*GeV) vetoEvent;
 
       /// Require at least two opposite sign muons compatible with Z-boson mass and keep the pair closest to Zboson mass
