@@ -163,60 +163,84 @@ namespace Rivet {
       if (!(_bosoncandidateexists)) vetoEvent;
 
       /// Fill muon related histograms
-      _h["NMus"] -> fill(muons.size());
+      _hist_NMus -> fill(muons.size());
+      //_h["NMus"] -> fill(muons.size());
 
       const double phi_Mu = _muon.phi();
-      _h["MuMinusPhi"] -> fill(phi_Mu);
+      _hist_MuMinusPhi -> fill(phi_Mu);
+      //_h["MuMinusPhi"] -> fill(phi_Mu);
       const double phi_AntiMu = _antimuon.phi();
-      _h["MuPlusPhi"] -> fill(phi_AntiMu);
+      _hist_MuPlusPhi -> fill(phi_AntiMu);
+      //_h["MuPlusPhi"] -> fill(phi_AntiMu);
 
       const double eta_Mu = _muon.eta();
-      _h["MuMinusEta"] -> fill(eta_Mu);
+      _hist_MuMinusEta -> fill(eta_Mu);
+      //_h["MuMinusEta"] -> fill(eta_Mu);
       const double eta_AntiMu = _antimuon.eta();
-      _h["MuPlusEta"] -> fill(eta_AntiMu);
+      _hist_MuPlusEta -> fill(eta_AntiMu);
+      //_h["MuPlusEta"] -> fill(eta_AntiMu);
 
       const double pT_Mu = _muon.pT()/GeV;
-      _h["MuMinusPt"] -> fill(pT_Mu);
+      _hist_MuMinusPt -> fill(pT_Mu);
+      //_h["MuMinusPt"] -> fill(pT_Mu);
       const double pT_AntiMu = _antimuon.pT()/GeV;
-      _h["MuPlusPt"] -> fill(pT_AntiMu);
+      _hist_MuPlusPt -> fill(pT_AntiMu);
+      //_h["MuPlusPt"] -> fill(pT_AntiMu);
 
       /// Fill Zboson related histograms
       const double m_Z = (_muon.mom() + _antimuon.mom()).mass()/GeV;
-      _h["ZM"] -> fill(m_Z);
+      _hist_ZM -> fill(m_Z);
+      //_h["ZM"] -> fill(m_Z);
 
       const double phi_Z = (_muon.mom() + _antimuon.mom()).phi();
-      _h["ZPhi"] -> fill(phi_Z);
+      _hist_ZPhi -> fill(phi_Z);
+      //_h["ZPhi"] -> fill(phi_Z);
 
       const double rap_Z = (_muon.mom() + _antimuon.mom()).rap();
-      _h["ZY"] -> fill(rap_Z);
+      _hist_ZY -> fill(rap_Z);
+      //_h["ZY"] -> fill(rap_Z);
 
       const double pT_Z = (_muon.mom() + _antimuon.mom()).pT()/GeV;
-      _h["ZPt"] -> fill(pT_Z);
+      _hist_ZPt -> fill(pT_Z);
+      //_h["ZPt"] -> fill(pT_Z);
 
       //const double pi = 3.14159265358979323846;
       const double thetastar = acos(tanh((_antimuon.mom().eta() - _muon.mom().eta())/2));
       const double phistareta = tan(HALFPI - (_antimuon.mom().phi() - _muon.mom().phi())/2)*sin(thetastar);
-      _h["PhiStarEta"] -> fill(phistareta);
+      _hist_PhiStarEta -> fill(phistareta);
+      //_h["PhiStarEta"] -> fill(phistareta);
 
       /// Fill jet related histograms
-      _h["NJets"] -> fill(jets.size());
+      _hist_NJets -> fill(jets.size());
+      //_h["NJets"] -> fill(jets.size());
 
-      _h["Jet1Phi"] -> fill(jets.at(0).phi());
-      _h["Jet2Phi"] -> fill(jets.at(1).phi());
-      _h["Jet3Phi"] -> fill(jets.at(2).phi());
+      _hist_Jet1Phi -> fill(jets.at(0).phi());
+      _hist_Jet2Phi -> fill(jets.at(1).phi());
+      _hist_Jet3Phi -> fill(jets.at(2).phi());
+      //_h["Jet1Phi"] -> fill(jets.at(0).phi());
+      //_h["Jet2Phi"] -> fill(jets.at(1).phi());
+      //_h["Jet3Phi"] -> fill(jets.at(2).phi());
 
-      _h["Jet1Eta"] -> fill(jets.at(0).eta());
+      _hist_Jet1Eta -> fill(jets.at(0).eta());
+      //_h["Jet1Eta"] -> fill(jets.at(0).eta());
 
-      _h["Jet1Y"] -> fill(jets.at(0).rap());
-      _h["Jet2Y"] -> fill(jets.at(1).rap());
-      _h["Jet3Y"] -> fill(jets.at(3).rap());
+      _hist_Jet1Y -> fill(jets.at(0).rap());
+      _hist_Jet2Y -> fill(jets.at(1).rap());
+      _hist_Jet3Y -> fill(jets.at(3).rap());
+      //_h["Jet1Y"] -> fill(jets.at(0).rap());
+      //_h["Jet2Y"] -> fill(jets.at(1).rap());
+      //_h["Jet3Y"] -> fill(jets.at(3).rap());
 
       const double pT_aveJet = sum(jets, pT, 0)/GeV/jets.size();
-      _h["JetAvePt"] -> fill(pT_aveJet);
+      _hist_JetAvePt -> fill(pT_aveJet);
+      //_h["JetAvePt"] -> fill(pT_aveJet);
 
-      _h["Jet1Pt"] -> fill(jets.at(0).pT()/GeV);
-      _h["Jet2Pt"] -> fill(jets.at(1).pT()/GeV);
-      _h["Jet3Pt"] -> fill(jets.at(2).pT()/GeV);
+      _hist_Jet1Pt -> fill(jets.at(0).pT()/GeV);
+      _hist_Jet2Pt -> fill(jets.at(1).pT()/GeV);
+      _hist_Jet3Pt -> fill(jets.at(2).pT()/GeV);
+      //_h["Jet1Pt"] -> fill(jets.at(0).pT()/GeV);
+      //_h["Jet2Pt"] -> fill(jets.at(1).pT()/GeV);
+      //_h["Jet3Pt"] -> fill(jets.at(2).pT()/GeV);
 
       
 
