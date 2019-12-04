@@ -123,14 +123,14 @@ namespace Rivet {
       /// Find muons and jets
       //vector<DressedLepton> muons = apply<DressedLeptons>(event, "dressed_leptons").dressedLeptons(Cuts::abspid == PID::MUON && Cuts::abseta < 2.4 && Cuts::pT > 25*GeV);
       vector<DressedLepton> muons = apply<DressedLeptons>(event, "dressed_leptons").dressedLeptons();
-      MSG_DEBUG("Muon multiplicity = " << muons.size())
+      MSG_DEBUG("Muon multiplicity = " << muons.size());
 
       Jets jets = apply<JetAlg>(event, "Jets").jetsByPt(Cuts::absrap < 2.4 && Cuts::pT > 0.1*GeV);
-      MSG_DEBUG("Jet multiplicity before overlap removal = " << jets.size())
+      SG_DEBUG("Jet multiplicity before overlap removal = " << jets.size());
 
       /// Remove jet-muon overlap
       idiscardIfAnyDeltaRLess(jets, muons, 0.3);
-      MSG_DEBUG("Jet multiplicity = " << jets.size())
+      MSG_DEBUG("Jet multiplicity = " << jets.size());
 
       /// Require at least one hard jet
       if (jets.size()<1) vetoEvent;      
