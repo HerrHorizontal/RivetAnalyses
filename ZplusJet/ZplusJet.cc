@@ -101,11 +101,11 @@ namespace Rivet {
       vector<double> binedges_PhiStarEta = {0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2, 3, 4, 5, 7, 10, 15, 20, 30, 50};
       ///// Book Histograms with vector
       _hist_ZPt = bookHisto1D("ZPt", binedges_ZPt);
-      _hist_Jet1Pt = bookHisto1D("ZPt", binedges_Jet1Pt);
-      _hist_Jet2Pt = bookHisto1D("ZPt", binedges_Jet2Pt);
-      _hist_Jet3Pt = bookHisto1D("ZPt", binedges_Jet3Pt);
-      _hist_JetAvePt = bookHisto1D("ZPt", binedges_JetAvePt);
-      _hist_Jet1Eta = bookHisto1D("ZPt", binedges_Jet1Eta);
+      _hist_Jet1Pt = bookHisto1D("Jet1Pt", binedges_Jet1Pt);
+      _hist_Jet2Pt = bookHisto1D("Jet2Pt", binedges_Jet2Pt);
+      _hist_Jet3Pt = bookHisto1D("Jet3Pt", binedges_Jet3Pt);
+      _hist_JetAvePt = bookHisto1D("JetAvePt", binedges_JetAvePt);
+      _hist_Jet1Eta = bookHisto1D("Jet1Eta", binedges_Jet1Eta);
 //      book(_h["ZPt"], "pT_Z", binedges_ZPt);
 //      book(_h["Jet1Pt"], "pZ_Jet1", binedges_Jet1Pt);
 //      book(_h["Jet2Pt"], "pT_Jet2", binedges_Jet2Pt);
