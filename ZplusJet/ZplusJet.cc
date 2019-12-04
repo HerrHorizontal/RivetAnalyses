@@ -13,11 +13,11 @@ namespace Rivet {
 
 
   /// @brief Add a short analysis description here
-  class NPCorrections_ZplusJet : public Analysis {
+  class ZplusJet : public Analysis {
   public:
 
     /// Constructor
-    DEFAULT_RIVET_ANALYSIS_CTOR(NPCorrections_ZplusJet);
+    DEFAULT_RIVET_ANALYSIS_CTOR(ZplusJet);
 
 
     /// @name Analysis methods
@@ -40,7 +40,6 @@ namespace Rivet {
       /// jet collection
       FastJets jets(ffs, FastJets::ANTIKT, 0.4);
       declare(jets, "Jets");
-
       /// out of acceptance particles treat as invisible
       VetoedFinalState fs_onlyinacc(ffs, (Cuts::abspid ==  PID::MUON && Cuts::abseta > 2.4) || 
                                     (Cuts::abspid == PID::PHOTON && Cuts::abseta > 3.0) || 
@@ -243,9 +242,7 @@ namespace Rivet {
       _hist_Jet3Pt -> fill(jets.at(2).pT()/GeV);
       //_h["Jet1Pt"] -> fill(jets.at(0).pT()/GeV);
       //_h["Jet2Pt"] -> fill(jets.at(1).pT()/GeV);
-      //_h["Jet3Pt"] -> fill(jets.at(2).pT()/GeV);
-
-      
+      //_h["Jet3Pt"] -> fill(jets.at(2).pT()/GeV);      
 
     }
 
@@ -255,9 +252,10 @@ namespace Rivet {
 
       //normalize(_h_YYYY); // normalize to unity
       const double sf = crossSection() / picobarn / sumOfWeights();
-      for (auto hist : _h) {
-        scale(hist.second, sf); // norm to cross section
-      }
+
+      /* for (auto hist : _h) {
+        scale(hist.second, sf); // norm to cross section 
+      } */
 
     }
 
@@ -266,11 +264,11 @@ namespace Rivet {
 
     /// @name Histograms
     //@{
-    Histo1DPtr _hist_NMus, _hist_MuPlusPt, _hist_MuPlusEta, _hist_MuPlusPhi, _hist_MuMinusPt, _hist_MuMinusEta, _hist_MuMinusPhi,
-              _hist_ZY, _hist_ZM, _hist_ZPhi, _hist_NJets, _hist_Jet1Y, _hist_Jet1Phi, _hist_Jet2Y, _hist_Jet2Phi, _hist_Jet3Y, _hist_Jet3Phi, _hist_MET;
-    Histo1DPtr _hist_ZPt, _hist_Jet1Pt, _hist_Jet2Pt, _hist_Jet3Pt, _hist_JetAvePt, _hist_Jet1Eta, _hist_PhiStarEta;
 
-    map<string, Histo1DPtr> _h;
+    Histo1DPtr _hist_NMus, _hist_MuPlusPt, _hist_MuPlusEta, _hist_MuPlusPhi, _hist_MuMinusPt, _hist_MuMinusEta, _hist_MuMinusPhi,
+               _hist_ZY, _hist_ZM, _hist_ZPhi, _hist_NJets, _hist_Jet1Y, _hist_Jet1Phi, _hist_Jet2Y, _hist_Jet2Phi, _hist_Jet3Y, _hist_Jet3Phi, _hist_MET;
+    Histo1DPtr _hist_ZPt, _hist_Jet1Pt, _hist_Jet2Pt, _hist_Jet3Pt, _hist_JetAvePt, _hist_Jet1Eta, _hist_PhiStarEta;
+    // map<string, Histo1DPtr> _h;
     //Profile1DPtr _p_AAAA;
     //CounterPtr _c_BBBB;
     //@}
@@ -280,7 +278,7 @@ namespace Rivet {
 
 
   // The hook for the plugin system
-  DECLARE_RIVET_PLUGIN(NPCorrections_ZplusJet);
+  DECLARE_RIVET_PLUGIN(ZplusJet);
 
 
 }
