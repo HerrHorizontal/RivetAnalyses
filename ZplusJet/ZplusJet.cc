@@ -126,7 +126,7 @@ namespace Rivet {
       MSG_DEBUG("Muon multiplicity = " << muons.size());
 
       Jets jets = apply<JetAlg>(event, "Jets").jetsByPt(Cuts::absrap < 2.4 && Cuts::pT > 0.1*GeV);
-      SG_DEBUG("Jet multiplicity before overlap removal = " << jets.size());
+      MSG_DEBUG("Jet multiplicity before overlap removal = " << jets.size());
 
       /// Remove jet-muon overlap
       idiscardIfAnyDeltaRLess(jets, muons, 0.3);
