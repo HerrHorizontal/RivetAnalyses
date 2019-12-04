@@ -125,6 +125,8 @@ namespace Rivet {
       vector<DressedLepton> muons = apply<DressedLeptons>(event, "dressed_leptons").dressedLeptons();
       MSG_DEBUG("Muon multiplicity = " << muons.size());
 
+      if (muons.size() < 2) vetoEvent;
+
       Jets jets = apply<JetAlg>(event, "Jets").jetsByPt(Cuts::absrap < 2.4 && Cuts::pT > 0.1*GeV);
       MSG_DEBUG("Jet multiplicity before overlap removal = " << jets.size());
 
@@ -141,8 +143,6 @@ namespace Rivet {
       double _massdiff = 20*GeV;
       DressedLepton _muon = muons.at(0);
       DressedLepton _antimuon = muons.at(0);
-
-      if (muons.size() < 2) vetoEvent;
 
       for (unsigned int it = 1; it < muons.size(); ++it) {
         for (unsigned int jt = 0; jt < it; ++jt) {
