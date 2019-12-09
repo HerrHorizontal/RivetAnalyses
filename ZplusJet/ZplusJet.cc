@@ -105,6 +105,7 @@ namespace Rivet {
       _hist_Jet3Pt = bookHisto1D("Jet3Pt", binedges_Jet3Pt);
       _hist_JetAvePt = bookHisto1D("JetAvePt", binedges_JetAvePt);
       _hist_Jet1Eta = bookHisto1D("Jet1Eta", binedges_Jet1Eta);
+      _hist_PhiStarEta = bookHisto1D("Phi*_eta", binedges_PhiStarEta);
 //      book(_h["ZPt"], "pT_Z", binedges_ZPt);
 //      book(_h["Jet1Pt"], "pZ_Jet1", binedges_Jet1Pt);
 //      book(_h["Jet2Pt"], "pT_Jet2", binedges_Jet2Pt);
