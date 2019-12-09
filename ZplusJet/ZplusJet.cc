@@ -254,6 +254,35 @@ namespace Rivet {
       //normalize(_h_YYYY); // normalize to unity
       const double sf = crossSection() / picobarn / sumOfWeights();
 
+      scale(_hist_NMus, sf);
+      scale(_hist_MuPlusPt, sf);
+      scale(_hist_MuPlusEta, sf);
+      scale(_hist_MuPlusPhi, sf);
+      scale(_hist_MuMinusPt, sf);
+      scale(_hist_MuMinusEta, sf);
+      scale(_hist_MuMinusPhi, sf);
+
+      scale(_hist_ZPt, sf);
+      scale(_hist_ZY, sf);
+      scale(_hist_ZM, sf);
+      scale(_hist_ZPhi, sf);
+
+      scale(_hist_NJets, sf);
+      scale(_hist_JetAvePt, sf);
+      scale(_hist_Jet1Pt, sf);
+      scale(_hist_Jet1Eta, sf);
+      scale(_hist_Jet1Y, sf);
+      scale(_hist_Jet1Phi, sf);
+      scale(_hist_Jet2Pt, sf);
+      scale(_hist_Jet2Y, sf);
+      scale(_hist_Jet2Phi, sf);
+      scale(_hist_Jet3Pt, sf);
+      scale(_hist_Jet3Y, sf);
+      scale(_hist_Jet3Phi, sf);
+
+      scale(_hist_PhiStarEta, sf);
+      
+      scale(_hist_MET, sf);
       /* for (auto hist : _h) {
         scale(hist.second, sf); // norm to cross section 
       } */
