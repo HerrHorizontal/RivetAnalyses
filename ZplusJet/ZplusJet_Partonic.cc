@@ -65,24 +65,24 @@ namespace Rivet {
       _hist_Jet3Y = bookHisto1D("Jet3Y", 30, -2.4, 2.4);
       _hist_Jet3Phi = bookHisto1D("Jet1Phi", 31, -3.142, 3.142);
       _hist_MET = bookHisto1D("MET", 70, 0, 350);
-//      book(_h["NMus"], "N_Muons", 10, 0, 10);
-//      book(_h["MuPlusPt"], "pT_Mu+", 11, 25, 300);
-//      book(_h["MuPlusEta"], "eta_Mu+", 24, -2.4, 2.4);
-//      book(_h["MuPlusPhi"], "phi_Mu+", 30, -3.14, 3.14);
-//      book(_h("MuMinusPt"), "pT_Mu-", 11, 25, 300);
-//      book(_h["MuMinusEta"], "eta_Mu-", 24, -2.4, 2.4);
-//      book(_h["MuMinusPhi"], "phi_Mu-", 30, -3.14, 3.14);
-//      book(_h["ZY", "y_Z", 12, -2.4, 2.4);
-//      book(_h["ZM"], "m_Z", 20, 71, 111);
-//      book(_h["ZPhi"], "phi_Z", 30, -3.14159, 3.14159);
-//      book(_h["NJets"], "N_Jets", 10, 0, 10);
-//      book(_h["Jet1Y"], "y_Jet1", 12, -2.4, 2.4);
-//      book(_h["Jet1Phi"], "phi_Jet1", 31, -3.142, 3.142);
-//      book(_h["Jet2Y"], "y_Jet2", 30, -2.4, 2.4);
-//      book(_h["Jet2Phi"], "phi_Jet2", 31, -3.142, 3.142);
-//      book(_h["Jet3Y"], "y_Jet3", 30, -2.4, 2.4);
-//      book(_h["Jet3Phi"], "phi_Jet3", 31, -3.142, 3.142);
-//      book(_h["MET"], "MET", 70, 0, 350);
+      // book(_h["NMus"], "N_Muons", 10, 0, 10);
+      // book(_h["MuPlusPt"], "pT_Mu+", 11, 25, 300);
+      // book(_h["MuPlusEta"], "eta_Mu+", 24, -2.4, 2.4);
+      // book(_h["MuPlusPhi"], "phi_Mu+", 30, -3.14, 3.14);
+      // book(_h("MuMinusPt"), "pT_Mu-", 11, 25, 300);
+      // book(_h["MuMinusEta"], "eta_Mu-", 24, -2.4, 2.4);
+      // book(_h["MuMinusPhi"], "phi_Mu-", 30, -3.14, 3.14);
+      // book(_h["ZY", "y_Z", 12, -2.4, 2.4);
+      // book(_h["ZM"], "m_Z", 20, 71, 111);
+      // book(_h["ZPhi"], "phi_Z", 30, -3.14159, 3.14159);
+      // book(_h["NJets"], "N_Jets", 10, 0, 10);
+      // book(_h["Jet1Y"], "y_Jet1", 12, -2.4, 2.4);
+      // book(_h["Jet1Phi"], "phi_Jet1", 31, -3.142, 3.142);
+      // book(_h["Jet2Y"], "y_Jet2", 30, -2.4, 2.4);
+      // book(_h["Jet2Phi"], "phi_Jet2", 31, -3.142, 3.142);
+      // book(_h["Jet3Y"], "y_Jet3", 30, -2.4, 2.4);
+      // book(_h["Jet3Phi"], "phi_Jet3", 31, -3.142, 3.142);
+      // book(_h["MET"], "MET", 70, 0, 350);
 
       //// Book histograms with variable bin size
       ///// Define bin edges
@@ -104,13 +104,14 @@ namespace Rivet {
       _hist_Jet3Pt = bookHisto1D("Jet3Pt", binedges_Jet3Pt);
       _hist_JetAvePt = bookHisto1D("JetAvePt", binedges_JetAvePt);
       _hist_Jet1Eta = bookHisto1D("Jet1Eta", binedges_Jet1Eta);
-//      book(_h["ZPt"], "pT_Z", binedges_ZPt);
-//      book(_h["Jet1Pt"], "pZ_Jet1", binedges_Jet1Pt);
-//      book(_h["Jet2Pt"], "pT_Jet2", binedges_Jet2Pt);
-//      book(_h["Jet3Pt"], "pT_Jet3", binedges_Jet3Pt);
-//      book(_h["JetAvePt"], "<pT>_Jets", binedges_JetAvePt);
-//      book(_h["Jet1Eta"], "eta_Jet1", binedges_Jet1Eta);
-//      book(_h["PhiStarEta"], "Phi*_eta", binedges_PhiStarEta);
+      _hist_PhiStarEta = bookHisto1D("Phi*_eta", binedges_PhiStarEta);
+      // book(_h["ZPt"], "pT_Z", binedges_ZPt);
+      // book(_h["Jet1Pt"], "pZ_Jet1", binedges_Jet1Pt);
+      // book(_h["Jet2Pt"], "pT_Jet2", binedges_Jet2Pt);
+      // book(_h["Jet3Pt"], "pT_Jet3", binedges_Jet3Pt);
+      // book(_h["JetAvePt"], "<pT>_Jets", binedges_JetAvePt);
+      // book(_h["Jet1Eta"], "eta_Jet1", binedges_Jet1Eta);
+      // book(_h["PhiStarEta"], "Phi*_eta", binedges_PhiStarEta);
 
     }
 
@@ -251,9 +252,40 @@ namespace Rivet {
 
       //normalize(_h_YYYY); // normalize to unity
       const double sf = crossSection() / picobarn / sumOfWeights();
-      for (auto hist : _h) {
+
+      scale(_hist_NMus, sf);
+      scale(_hist_MuPlusPt, sf);
+      scale(_hist_MuPlusEta, sf);
+      scale(_hist_MuPlusPhi, sf);
+      scale(_hist_MuMinusPt, sf);
+      scale(_hist_MuMinusEta, sf);
+      scale(_hist_MuMinusPhi, sf);
+
+      scale(_hist_ZPt, sf);
+      scale(_hist_ZY, sf);
+      scale(_hist_ZM, sf);
+      scale(_hist_ZPhi, sf);
+
+      scale(_hist_NJets, sf);
+      scale(_hist_JetAvePt, sf);
+      scale(_hist_Jet1Pt, sf);
+      scale(_hist_Jet1Eta, sf);
+      scale(_hist_Jet1Y, sf);
+      scale(_hist_Jet1Phi, sf);
+      scale(_hist_Jet2Pt, sf);
+      scale(_hist_Jet2Y, sf);
+      scale(_hist_Jet2Phi, sf);
+      scale(_hist_Jet3Pt, sf);
+      scale(_hist_Jet3Y, sf);
+      scale(_hist_Jet3Phi, sf);
+
+      scale(_hist_PhiStarEta, sf);
+      
+      scale(_hist_MET, sf);
+      
+      /* for (auto hist : _h) {
         scale(hist.second, sf); // norm to cross section
-      }
+      } */
 
     }
 
@@ -262,7 +294,7 @@ namespace Rivet {
 
     /// @name Histograms
     //@{
-      
+
     Histo1DPtr _hist_NMus, _hist_MuPlusPt, _hist_MuPlusEta, _hist_MuPlusPhi, _hist_MuMinusPt, _hist_MuMinusEta, _hist_MuMinusPhi,
                _hist_ZY, _hist_ZM, _hist_ZPhi, _hist_NJets, _hist_Jet1Y, _hist_Jet1Phi, _hist_Jet2Y, _hist_Jet2Phi, _hist_Jet3Y, _hist_Jet3Phi, _hist_MET;
     Histo1DPtr _hist_ZPt, _hist_Jet1Pt, _hist_Jet2Pt, _hist_Jet3Pt, _hist_JetAvePt, _hist_Jet1Eta, _hist_PhiStarEta;
