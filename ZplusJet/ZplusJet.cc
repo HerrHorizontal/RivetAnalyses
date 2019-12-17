@@ -169,10 +169,10 @@ namespace Rivet {
       _hist_NMus -> fill(muons.size());
       //_h["NMus"] -> fill(muons.size());
 
-      const double phi_Mu = _muon.phi();
+      const double phi_Mu = _muon.phi() - PI;
       _hist_MuMinusPhi -> fill(phi_Mu);
       //_h["MuMinusPhi"] -> fill(phi_Mu);
-      const double phi_AntiMu = _antimuon.phi();
+      const double phi_AntiMu = _antimuon.phi() - PI;
       _hist_MuPlusPhi -> fill(phi_AntiMu);
       //_h["MuPlusPhi"] -> fill(phi_AntiMu);
 
@@ -195,7 +195,7 @@ namespace Rivet {
       _hist_ZM -> fill(m_Z);
       //_h["ZM"] -> fill(m_Z);
 
-      const double phi_Z = (_muon.mom() + _antimuon.mom()).phi();
+      const double phi_Z = (_muon.mom() + _antimuon.mom()).phi() - PI;
       _hist_ZPhi -> fill(phi_Z);
       //_h["ZPhi"] -> fill(phi_Z);
 
@@ -217,9 +217,9 @@ namespace Rivet {
       _hist_NJets -> fill(jets.size());
       //_h["NJets"] -> fill(jets.size());
 
-      _hist_Jet1Phi -> fill(jets.at(0).phi());
-      _hist_Jet2Phi -> fill(jets.at(1).phi());
-      _hist_Jet3Phi -> fill(jets.at(2).phi());
+      _hist_Jet1Phi -> fill(jets.at(0).phi() - PI);
+      _hist_Jet2Phi -> fill(jets.at(1).phi() - PI);
+      _hist_Jet3Phi -> fill(jets.at(2).phi() - PI);
       //_h["Jet1Phi"] -> fill(jets.at(0).phi());
       //_h["Jet2Phi"] -> fill(jets.at(1).phi());
       //_h["Jet3Phi"] -> fill(jets.at(2).phi());
