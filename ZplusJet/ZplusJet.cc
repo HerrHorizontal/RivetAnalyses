@@ -66,27 +66,8 @@ namespace Rivet {
       _hist_Jet3Y = bookHisto1D("Jet3Y", 30, -2.4, 2.4);
       _hist_Jet3Phi = bookHisto1D("Jet1Phi", 31, -3.142, 3.142);
       _hist_MET = bookHisto1D("MET", 70, 0, 350);
-//      book(_h["NMus"], "N_Muons", 10, 0, 10);
-//      book(_h["MuPlusPt"], "pT_Mu+", 11, 25, 300);
-//      book(_h["MuPlusEta"], "eta_Mu+", 24, -2.4, 2.4);
-//      book(_h["MuPlusPhi"], "phi_Mu+", 30, -3.14, 3.14);
-//      book(_h("MuMinusPt"), "pT_Mu-", 11, 25, 300);
-//      book(_h["MuMinusEta"], "eta_Mu-", 24, -2.4, 2.4);
-//      book(_h["MuMinusPhi"], "phi_Mu-", 30, -3.14, 3.14);
-//      book(_h["ZY", "y_Z", 12, -2.4, 2.4);
-//      book(_h["ZM"], "m_Z", 20, 71, 111);
-//      book(_h["ZPhi"], "phi_Z", 30, -3.14159, 3.14159);
-//      book(_h["NJets"], "N_Jets", 10, 0, 10);
-//      book(_h["Jet1Y"], "y_Jet1", 12, -2.4, 2.4);
-//      book(_h["Jet1Phi"], "phi_Jet1", 31, -3.142, 3.142);
-//      book(_h["Jet2Y"], "y_Jet2", 30, -2.4, 2.4);
-//      book(_h["Jet2Phi"], "phi_Jet2", 31, -3.142, 3.142);
-//      book(_h["Jet3Y"], "y_Jet3", 30, -2.4, 2.4);
-//      book(_h["Jet3Phi"], "phi_Jet3", 31, -3.142, 3.142);
-//      book(_h["MET"], "MET", 70, 0, 350);
 
       //// Book histograms with variable bin size
-      ///// Define bin edges
       vector<double> binedges_ZPt = {25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 110, 130, 150, 170, 190, 220, 250, 400, 1000};
 
       vector<double> binedges_Jet1Pt = {20, 25, 30, 40, 50, 75, 125, 175, 225, 300, 400, 500, 700, 1000};
@@ -97,8 +78,8 @@ namespace Rivet {
                                              -1.653, -1.479, -1.305, -1.044, -0.783, -0.522, -0.261, 0.000, 0.261, 0.522, 0.783, 1.044, 
                                              1.305, 1.479, 1.653, 1.930, 2.172, 2.322, 2.500, 2.650, 2.853, 2.964, 3.139, 3.489, 3.839, 
                                              5.191};
-      vector<double> binedges_PhiStarEta = {0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2, 3, 4, 5, 7, 10, 15, 20, 30, 50};
-      ///// Book Histograms with vector
+      vector<double> binedges_PhiStarEta = {0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2., 3., 4., 5., 7., 10., 15., 20., 30., 50.};
+      
       _hist_ZPt = bookHisto1D("ZPt", binedges_ZPt);
       _hist_Jet1Pt = bookHisto1D("Jet1Pt", binedges_Jet1Pt);
       _hist_Jet2Pt = bookHisto1D("Jet2Pt", binedges_Jet2Pt);
@@ -106,14 +87,48 @@ namespace Rivet {
       _hist_JetAvePt = bookHisto1D("JetAvePt", binedges_JetAvePt);
       _hist_Jet1Eta = bookHisto1D("Jet1Eta", binedges_Jet1Eta);
       _hist_PhiStarEta = bookHisto1D("Phi*_eta", binedges_PhiStarEta);
-//      book(_h["ZPt"], "pT_Z", binedges_ZPt);
-//      book(_h["Jet1Pt"], "pZ_Jet1", binedges_Jet1Pt);
-//      book(_h["Jet2Pt"], "pT_Jet2", binedges_Jet2Pt);
-//      book(_h["Jet3Pt"], "pT_Jet3", binedges_Jet3Pt);
-//      book(_h["JetAvePt"], "<pT>_Jets", binedges_JetAvePt);
-//      book(_h["Jet1Eta"], "eta_Jet1", binedges_Jet1Eta);
-//      book(_h["PhiStarEta"], "Phi*_eta", binedges_PhiStarEta);
 
+      vector<double> binedges_Ystar = {0.0, 0.5, 1.0, 1.5, 2.0, 2.5};
+      vector<double> binedges_Yboost = {0.0, 0.5, 1.0, 1.5, 2.0, 2.5};
+      vector<double> binedges_ZPtC = {25., 30., 35., 40., 50., 60., 70., 80., 90., 100., 110., 130., 150., 170., 190., 220., 250., 400., 1000.};
+      vector<double> binedges_ZPtE = {25., 30., 35., 40., 45., 50., 60., 70., 80., 90., 100., 110., 130., 150., 170., 190., 250., 1000.};
+      vector<double> binedges_ZPtX = {25., 30., 40., 50., 70., 90., 110., 150., 250.};
+      vector<double> binedges_PhiStarEtaC = {0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2., 3., 4., 5., 7., 10., 15., 20., 30., 50.};
+      vector<double> binedges_PhiStarEtaE = {0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2., 3., 5., 10., 15., 50.};
+      vector<double> binedges_PhiStarEtax = {0.4, 0.6, 0.8, 1.0, 5.};
+
+      _hist_Ys0Yb0_ZPt = bookHisto1D("ZPtY*0Yb0",binedges_ZPtC); 
+      _hist_Ys0Yb05_ZPt = bookHisto1D("ZPtY*0Yb05",binedges_ZPtC); 
+      _hist_Ys0Yb1_ZPt = bookHisto1D("ZPtY*0Yb1",binedges_ZPtC); 
+      _hist_Ys0Yb15_ZPt = bookHisto1D("ZPtY*0Yb25",binedges_ZPtC); 
+      _hist_Ys0Yb2_ZPt = bookHisto1D("ZPtY*0Yb2",binedges_ZPtE);
+      _hist_Ys05Yb0_ZPt = bookHisto1D("ZPtY*05Yb0",binedges_ZPtC); 
+      _hist_Ys05Yb05_ZPt = bookHisto1D("ZPtY*05Yb05",binedges_ZPtC); 
+      _hist_Ys05Yb1_ZPt = bookHisto1D("ZPtY*05Yb1",binedges_ZPtC); 
+      _hist_Ys05Yb15_ZPt = bookHisto1D("ZPtY*05Yb15",binedges_ZPtE);
+      _hist_Ys1Yb0_ZPt = bookHisto1D("ZPtY*1Yb0",binedges_ZPtC); 
+      _hist_Ys1Yb05_ZPt = bookHisto1D("ZPtY*1Yb05",binedges_ZPtC); 
+      _hist_Ys1Yb1_ZPt = bookHisto1D("ZPtY*1Yb15",binedges_ZPtE);
+      _hist_Ys15Yb0_ZPt  = bookHisto1D("ZPtY*15Yb0",binedges_ZPtE); 
+      _hist_Ys15Yb05_ZPt = bookHisto1D("ZPtY*15Yb05",binedges_ZPtE);
+      _hist_Ys2Yb0_ZPt = bookHisto1D("ZPtY*2Yb0",binedges_ZPtX);
+
+      _hist_Ys0Yb0_PhiStarEta = bookHisto1D("Phi*_etaY*0Yb0",binedges_PhiStarEtaC); 
+      _hist_Ys0Yb05_PhiStarEta = bookHisto1D("Phi*_etaY*0Yb05",binedges_PhiStarEtaC); 
+      _hist_Ys0Yb1_PhiStarEta = bookHisto1D("Phi*_etaY*0Yb1",binedges_PhiStarEtaC); 
+      _hist_Ys0Yb15_PhiStarEta = bookHisto1D("Phi*_etaY*0Yb25",binedges_PhiStarEtaC); 
+      _hist_Ys0Yb2_PhiStarEta = bookHisto1D("Phi*_etaY*0Yb2",binedges_PhiStarEtaE);
+      _hist_Ys05Yb0_PhiStarEta = bookHisto1D("Phi*_etaY*05Yb0",binedges_PhiStarEtaC); 
+      _hist_Ys05Yb05_PhiStarEta = bookHisto1D("Phi*_etaY*05Yb05",binedges_PhiStarEtaC); 
+      _hist_Ys05Yb1_PhiStarEta = bookHisto1D("Phi*_etaY*05Yb1",binedges_PhiStarEtaC); 
+      _hist_Ys05Yb15_PhiStarEta = bookHisto1D("Phi*_etaY*05Yb15",binedges_PhiStarEtaE);
+      _hist_Ys1Yb0_PhiStarEta = bookHisto1D("Phi*_etaY*1Yb0",binedges_PhiStarEtaC); 
+      _hist_Ys1Yb05_PhiStarEta = bookHisto1D("Phi*_etaY*1Yb05",binedges_PhiStarEtaC); 
+      _hist_Ys1Yb1_PhiStarEta = bookHisto1D("Phi*_etaY*1Yb15",binedges_PhiStarEtaE);
+      _hist_Ys15Yb0_PhiStarEta  = bookHisto1D("Phi*_etaY*15Yb0",binedges_PhiStarEtaE); 
+      _hist_Ys15Yb05_PhiStarEta = bookHisto1D("Phi*_etaY*15Yb05",binedges_PhiStarEtaE);
+      _hist_Ys2Yb0_PhiStarEta = bookHisto1D("Phi*_etaY*2Yb0",binedges_PhiStarEtaX);
+      
     }
 
 
@@ -167,83 +182,134 @@ namespace Rivet {
 
       /// Fill muon related histograms
       _hist_NMus -> fill(muons.size());
-      //_h["NMus"] -> fill(muons.size());
 
       const double phi_Mu = _muon.phi() - PI;
       _hist_MuMinusPhi -> fill(phi_Mu);
-      //_h["MuMinusPhi"] -> fill(phi_Mu);
       const double phi_AntiMu = _antimuon.phi() - PI;
       _hist_MuPlusPhi -> fill(phi_AntiMu);
-      //_h["MuPlusPhi"] -> fill(phi_AntiMu);
 
       const double eta_Mu = _muon.eta();
       _hist_MuMinusEta -> fill(eta_Mu);
-      //_h["MuMinusEta"] -> fill(eta_Mu);
       const double eta_AntiMu = _antimuon.eta();
       _hist_MuPlusEta -> fill(eta_AntiMu);
-      //_h["MuPlusEta"] -> fill(eta_AntiMu);
 
       const double pT_Mu = _muon.pT()/GeV;
       _hist_MuMinusPt -> fill(pT_Mu);
-      //_h["MuMinusPt"] -> fill(pT_Mu);
       const double pT_AntiMu = _antimuon.pT()/GeV;
       _hist_MuPlusPt -> fill(pT_AntiMu);
-      //_h["MuPlusPt"] -> fill(pT_AntiMu);
 
       /// Fill Zboson related histograms
       const double m_Z = (_muon.mom() + _antimuon.mom()).mass()/GeV;
       _hist_ZM -> fill(m_Z);
-      //_h["ZM"] -> fill(m_Z);
 
       const double phi_Z = (_muon.mom() + _antimuon.mom()).phi() - PI;
       _hist_ZPhi -> fill(phi_Z);
-      //_h["ZPhi"] -> fill(phi_Z);
 
       const double rap_Z = (_muon.mom() + _antimuon.mom()).rap();
       _hist_ZY -> fill(rap_Z);
-      //_h["ZY"] -> fill(rap_Z);
 
       const double pT_Z = (_muon.mom() + _antimuon.mom()).pT()/GeV;
       _hist_ZPt -> fill(pT_Z);
-      //_h["ZPt"] -> fill(pT_Z);
 
       //const double pi = 3.14159265358979323846;
       const double thetastar = acos(tanh((_antimuon.mom().eta() - _muon.mom().eta())/2));
       const double phistareta = tan(HALFPI - (_antimuon.mom().phi() - _muon.mom().phi())/2)*sin(thetastar);
       _hist_PhiStarEta -> fill(phistareta);
-      //_h["PhiStarEta"] -> fill(phistareta);
 
       /// Fill jet related histograms
       _hist_NJets -> fill(jets.size());
-      //_h["NJets"] -> fill(jets.size());
 
       _hist_Jet1Phi -> fill(jets.at(0).phi() - PI);
       _hist_Jet2Phi -> fill(jets.at(1).phi() - PI);
       _hist_Jet3Phi -> fill(jets.at(2).phi() - PI);
-      //_h["Jet1Phi"] -> fill(jets.at(0).phi());
-      //_h["Jet2Phi"] -> fill(jets.at(1).phi());
-      //_h["Jet3Phi"] -> fill(jets.at(2).phi());
 
       _hist_Jet1Eta -> fill(jets.at(0).eta());
-      //_h["Jet1Eta"] -> fill(jets.at(0).eta());
 
-      _hist_Jet1Y -> fill(jets.at(0).rap());
+      const double rap_Jet1 = jets.at(0).rap();
+      _hist_Jet1Y -> fill(rap_Jet1);
       _hist_Jet2Y -> fill(jets.at(1).rap());
       _hist_Jet3Y -> fill(jets.at(3).rap());
-      //_h["Jet1Y"] -> fill(jets.at(0).rap());
-      //_h["Jet2Y"] -> fill(jets.at(1).rap());
-      //_h["Jet3Y"] -> fill(jets.at(3).rap());
 
       const double pT_aveJet = sum(jets, pT, 0)/GeV/jets.size();
       _hist_JetAvePt -> fill(pT_aveJet);
-      //_h["JetAvePt"] -> fill(pT_aveJet);
 
       _hist_Jet1Pt -> fill(jets.at(0).pT()/GeV);
       _hist_Jet2Pt -> fill(jets.at(1).pT()/GeV);
-      _hist_Jet3Pt -> fill(jets.at(2).pT()/GeV);
-      //_h["Jet1Pt"] -> fill(jets.at(0).pT()/GeV);
-      //_h["Jet2Pt"] -> fill(jets.at(1).pT()/GeV);
-      //_h["Jet3Pt"] -> fill(jets.at(2).pT()/GeV);      
+      _hist_Jet3Pt -> fill(jets.at(2).pT()/GeV);   
+
+      /// Fill triple differential histograms
+      const double rap_star = 0.5 * abs(rap_Z - rap_Jet1);
+      const double rap_boost = 0.5 * abs(rap_Z + rap_Jet1);
+      if (rap_star <= .5) {
+        if (rap_boost < .5) {
+          _hist_Ys0Yb0_ZPt -> fill(pT_Z);
+          _hist_Ys0Yb0_PhiStarEta -> fill(phistareta);
+        }
+        else if (rap_boost < 1.) {
+          _hist_Ys0Yb05_ZPt -> fill(pT_Z);
+          _hist_Ys0Yb05_PhiStarEta -> fill(phistareta);
+        }
+        else if (rap_boost < 1.5) {
+          _hist_Ys0Yb1_ZPt -> fill(pT_Z);
+          _hist_Ys0Yb1_PhiStarEta -> fill(phistareta);
+        }
+        else if (rap_boost < 2.) {
+          _hist_Ys0Yb15_ZPt -> fill(pT_Z);
+          _hist_Ys0Yb15_PhiStarEta -> fill(phistareta);
+        }
+        else {
+          _hist_Ys0Yb2_ZPt -> fill(pT_Z);
+          _hist_Ys0Yb2_PhiStarEta -> fill(phistareta);
+        }
+
+      }
+      else if (rap_star <= 1.) {
+        if (rap_boost < .5) {
+          _hist_Ys05Yb0_ZPt -> fill(pT_Z);
+          _hist_Ys05Yb0_PhiStarEta -> fill(phistareta);
+        }
+        else if (rap_boost < 1.) {
+          _hist_Ys05Yb05_ZPt -> fill(pT_Z);
+          _hist_Ys05Yb05_PhiStarEta -> fill(phistareta);
+        }
+        else if (rap_boost < 1.5) {
+          _hist_Ys05Yb1_ZPt -> fill(pT_Z);
+          _hist_Ys05Yb1_PhiStarEta -> fill(phistareta);
+        }
+        else {
+          _hist_Ys05Yb15_ZPt -> fill(pT_Z);
+          _hist_Ys05Yb15_PhiStarEta -> fill(phistareta);
+        }
+
+      }
+      else if (rap_star <= 1.5) {
+        if (rap_boost < .5) {
+          _hist_Ys1Yb0_ZPt -> fill(pT_Z);
+          _hist_Ys1Yb0_PhiStarEta -> fill(phistareta);
+        }
+        else if (rap_boost < 1.) {
+          _hist_Ys1Yb05_ZPt -> fill(pT_Z);
+          _hist_Ys1Yb05_PhiStarEta -> fill(phistareta);
+        }
+        else {
+          _hist_Ys1Yb1_ZPt -> fill(pT_Z);
+          _hist_Ys1Yb1_PhiStarEta -> fill(phistareta);
+        }
+      }
+      else if (rap_star <= 2.) {
+        if (rap_boost < .5) {
+          _hist_Ys15Yb0_ZPt -> fill(pT_Z);
+          _hist_Ys15Yb0_PhiStarEta -> fill(phistareta);
+        }
+        else {
+          _hist_Ys15Yb05_ZPt -> fill(pT_Z);
+          _hist_Ys15Yb05_PhiStarEta -> fill(phistareta);
+        }
+      }
+      else {
+        _hist_Ys2Yb0_ZPt -> fill(pT_Z);
+        _hist_Ys2Yb0_PhiStarEta -> fill(phistareta);
+      }
 
     }
 
@@ -283,9 +349,6 @@ namespace Rivet {
       scale(_hist_PhiStarEta, sf);
       
       scale(_hist_MET, sf);
-      /* for (auto hist : _h) {
-        scale(hist.second, sf); // norm to cross section 
-      } */
 
     }
 
@@ -295,12 +358,23 @@ namespace Rivet {
     /// @name Histograms
     //@{
 
+    /// Control Histograms
     Histo1DPtr _hist_NMus, _hist_MuPlusPt, _hist_MuPlusEta, _hist_MuPlusPhi, _hist_MuMinusPt, _hist_MuMinusEta, _hist_MuMinusPhi,
                _hist_ZY, _hist_ZM, _hist_ZPhi, _hist_NJets, _hist_Jet1Y, _hist_Jet1Phi, _hist_Jet2Y, _hist_Jet2Phi, _hist_Jet3Y, _hist_Jet3Phi, _hist_MET;
     Histo1DPtr _hist_ZPt, _hist_Jet1Pt, _hist_Jet2Pt, _hist_Jet3Pt, _hist_JetAvePt, _hist_Jet1Eta, _hist_PhiStarEta;
-    // map<string, Histo1DPtr> _h;
-    //Profile1DPtr _p_AAAA;
-    //CounterPtr _c_BBBB;
+
+    Histo1DPtr _hist_Ys0Yb0_ZPt, _hist_Ys0Yb05_ZPt, _hist_Ys0Yb1_ZPt, _hist_Ys0Yb15_ZPt, _hist_Ys0Yb2_ZPt;
+    Histo1DPtr _hist_Ys05Yb0_ZPt, _hist_Ys05Yb05_ZPt, _hist_Ys05Yb1_ZPt, _hist_Ys05Yb15_ZPt;
+    Histo1DPtr _hist_Ys1Yb0_ZPt, _hist_Ys1Yb05_ZPt, _hist_Ys1Yb1_ZPt;
+    Histo1DPtr _hist_Ys15Yb0_ZPt, _hist_Ys15Yb05_ZPt;
+    Histo1DPtr _hist_Ys2Yb0_ZPt;
+
+    Histo1DPtr _hist_Ys0Yb0_PhiStarEta, _hist_Ys0Yb05_PhiStarEta, _hist_Ys0Yb1_PhiStarEta, _hist_Ys0Yb15_PhiStarEta, _hist_Ys0Yb2_PhiStarEta;
+    Histo1DPtr _hist_Ys05Yb0_PhiStarEta, _hist_Ys05Yb05_PhiStarEta, _hist_Ys05Yb1_PhiStarEta, _hist_Ys05Yb15_PhiStarEta;
+    Histo1DPtr _hist_Ys1Yb0_PhiStarEta, _hist_Ys1Yb05_PhiStarEta, _hist_Ys1Yb1_PhiStarEta;
+    Histo1DPtr _hist_Ys15Yb0_PhiStarEta, _hist_Ys15Yb05_PhiStarEta;
+    Histo1DPtr _hist_Ys2Yb0_PhiStarEta;
+  
     //@}
 
 
