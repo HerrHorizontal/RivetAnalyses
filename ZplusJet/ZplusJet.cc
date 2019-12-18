@@ -95,7 +95,7 @@ namespace Rivet {
       vector<double> binedges_ZPtX = {25., 30., 40., 50., 70., 90., 110., 150., 250.};
       vector<double> binedges_PhiStarEtaC = {0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2., 3., 4., 5., 7., 10., 15., 20., 30., 50.};
       vector<double> binedges_PhiStarEtaE = {0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2., 3., 5., 10., 15., 50.};
-      vector<double> binedges_PhiStarEtax = {0.4, 0.6, 0.8, 1.0, 5.};
+      vector<double> binedges_PhiStarEtaX = {0.4, 0.6, 0.8, 1.0, 5.};
 
       _hist_Ys0Yb0_ZPt = bookHisto1D("ZPtY*0Yb0",binedges_ZPtC); 
       _hist_Ys0Yb05_ZPt = bookHisto1D("ZPtY*0Yb05",binedges_ZPtC); 
