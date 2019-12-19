@@ -64,7 +64,7 @@ namespace Rivet {
       _hist_Jet2Y = bookHisto1D("Jet2Y", 30, -2.4, 2.4);
       _hist_Jet2Phi = bookHisto1D("Jet2Phi", 31, -3.142, 3.142);
       _hist_Jet3Y = bookHisto1D("Jet3Y", 30, -2.4, 2.4);
-      _hist_Jet3Phi = bookHisto1D("Jet1Phi", 31, -3.142, 3.142);
+      _hist_Jet3Phi = bookHisto1D("Jet3Phi", 31, -3.142, 3.142);
       _hist_MET = bookHisto1D("MET", 70, 0, 350);
 
       //// Book histograms with variable bin size
@@ -349,6 +349,38 @@ namespace Rivet {
       scale(_hist_PhiStarEta, sf);
       
       scale(_hist_MET, sf);
+
+      scale(_hist_Ys0Yb0_ZPt, sf);
+      scale(_hist_Ys0Yb05_ZPt, sf);
+      scale(_hist_Ys0Yb1_ZPt, sf);
+      scale(_hist_Ys0Yb15_ZPt, sf);
+      scale(_hist_Ys0Yb2_ZPt, sf);
+      scale(_hist_Ys05Yb0_ZPt, sf);
+      scale(_hist_Ys05Yb05_ZPt, sf);
+      scale(_hist_Ys05Yb1_ZPt, sf);
+      scale(_hist_Ys05Yb15_ZPt, sf);
+      scale(_hist_Ys1Yb0_ZPt, sf);
+      scale(_hist_Ys1Yb05_ZPt, sf);
+      scale(_hist_Ys1Yb1_ZPt, sf);
+      scale(_hist_Ys15Yb0_ZPt, sf);
+      scale(_hist_Ys15Yb05_ZPt, sf);
+      scale(_hist_Ys2Yb0_ZPt, sf);
+
+      scale(_hist_Ys0Yb0_PhiStarEta, sf);
+      scale(_hist_Ys0Yb05_PhiStarEta, sf);
+      scale(_hist_Ys0Yb1_PhiStarEta, sf);
+      scale(_hist_Ys0Yb15_PhiStarEta, sf);
+      scale(_hist_Ys0Yb2_PhiStarEta, sf);
+      scale(_hist_Ys05Yb0_PhiStarEta, sf);
+      scale(_hist_Ys05Yb05_PhiStarEta, sf);
+      scale(_hist_Ys05Yb1_PhiStarEta, sf);
+      scale(_hist_Ys05Yb15_PhiStarEta, sf);
+      scale(_hist_Ys1Yb0_PhiStarEta, sf);
+      scale(_hist_Ys1Yb05_PhiStarEta, sf);
+      scale(_hist_Ys1Yb1_PhiStarEta, sf);
+      scale(_hist_Ys15Yb0_PhiStarEta, sf);
+      scale(_hist_Ys15Yb05_PhiStarEta, sf);
+      scale(_hist_Ys2Yb0_PhiStarEta, sf);
 
     }
 

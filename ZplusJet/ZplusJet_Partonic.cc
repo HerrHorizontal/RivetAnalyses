@@ -63,7 +63,7 @@ namespace Rivet {
       _hist_Jet2Y = bookHisto1D("Jet2Y", 30, -2.4, 2.4);
       _hist_Jet2Phi = bookHisto1D("Jet2Phi", 31, -3.142, 3.142);
       _hist_Jet3Y = bookHisto1D("Jet3Y", 30, -2.4, 2.4);
-      _hist_Jet3Phi = bookHisto1D("Jet1Phi", 31, -3.142, 3.142);
+      _hist_Jet3Phi = bookHisto1D("Jet3Phi", 31, -3.142, 3.142);
       _hist_MET = bookHisto1D("MET", 70, 0, 350);
       // book(_h["NMus"], "N_Muons", 10, 0, 10);
       // book(_h["MuPlusPt"], "pT_Mu+", 11, 25, 300);
