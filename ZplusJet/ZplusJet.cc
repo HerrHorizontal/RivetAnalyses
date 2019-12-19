@@ -143,7 +143,7 @@ namespace Rivet {
       //// discard events with less than two muons
       if (muons.size() < 2) vetoEvent;
 
-      Jets jets = apply<JetAlg>(event, "Jets").jetsByPt(Cuts::absrap < 2.4 && Cuts::pT > 0.1*GeV);
+      Jets jets = apply<JetAlg>(event, "Jets").jetsByPt(Cuts::absrap < 2.4 && Cuts::pT > 10.0*GeV);
       MSG_DEBUG("Jet multiplicity before overlap removal = " << jets.size());
 
       //// Remove jet-muon overlap
@@ -225,12 +225,12 @@ namespace Rivet {
       const double pT_aveJet = sum(jets, pT, 0)/GeV/jets.size();
       const double pT_Jet1 = jets.at(0).pT()/GeV;
       //// in case there are not more than one jet
-      const double rap_Jet2 = -999;
-      const double rap_Jet3 = -999;
-      const double phi_Jet2 = -999;
-      const double phi_Jet3 = -999;
-      const double pT_Jet2 = -999;
-      const double pT_Jet3 = -999;
+      double rap_Jet2 = -999;
+      double rap_Jet3 = -999;
+      double phi_Jet2 = -999;
+      double phi_Jet3 = -999;
+      double pT_Jet2 = -999;
+      double pT_Jet3 = -999;
       if (jets.size() > 1) {
         rap_Jet2 = jets.at(1).rap();
         phi_Jet2 = jets.at(1).phi() - PI;
