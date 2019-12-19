@@ -140,16 +140,17 @@ namespace Rivet {
       vector<DressedLepton> muons = apply<DressedLeptons>(event, "dressed_leptons").dressedLeptons();
       MSG_DEBUG("Muon multiplicity = " << muons.size());
 
+      //// discard events with less than two muons
       if (muons.size() < 2) vetoEvent;
 
       Jets jets = apply<JetAlg>(event, "Jets").jetsByPt(Cuts::absrap < 2.4 && Cuts::pT > 0.1*GeV);
       MSG_DEBUG("Jet multiplicity before overlap removal = " << jets.size());
 
-      /// Remove jet-muon overlap
+      //// Remove jet-muon overlap
       idiscardIfAnyDeltaRLess(jets, muons, 0.3);
       MSG_DEBUG("Jet multiplicity = " << jets.size());
 
-      /// Require at least one hard jet
+      //// Require at least one hard jet
       if (jets.size()<1) vetoEvent;      
       if (jets.at(0).pT() <= 20*GeV) vetoEvent;
 
@@ -310,6 +311,10 @@ namespace Rivet {
         _hist_Ys2Yb0_ZPt -> fill(pT_Z);
         _hist_Ys2Yb0_PhiStarEta -> fill(phistareta);
       }
+
+      /// Fill missing momentum
+      const double pTmiss = apply<MissingMomentum>(event, "invisibles").missingPt()/GeV;
+      _hist_MET -> fill(pTmiss);
 
     }
 

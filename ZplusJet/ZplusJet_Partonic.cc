@@ -165,6 +165,7 @@ namespace Rivet {
       vector<DressedLepton> muons = apply<DressedLeptons>(event, "dressed_leptons").dressedLeptons();
       MSG_DEBUG("Muon multiplicity = " << muons.size());
 
+      //// discard events with less than two muons
       if (muons.size() < 2) vetoEvent;
 
       Jets jets = apply<JetAlg>(event, "Jets").jetsByPt(Cuts::absrap < 2.4 && Cuts::pT > 0.1*GeV);
@@ -359,6 +360,10 @@ namespace Rivet {
         _hist_Ys2Yb0_ZPt -> fill(pT_Z);
         _hist_Ys2Yb0_PhiStarEta -> fill(phistareta);
       }
+
+      /// Fill missing momentum
+      const double pTmiss = apply<MissingMomentum>(event, "invisibles").missingPt()/GeV;
+      _hist_MET -> fill(pTmiss);
 
     }
 
