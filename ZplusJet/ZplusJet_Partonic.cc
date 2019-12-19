@@ -113,6 +113,47 @@ namespace Rivet {
       // book(_h["Jet1Eta"], "eta_Jet1", binedges_Jet1Eta);
       // book(_h["PhiStarEta"], "Phi*_eta", binedges_PhiStarEta);
 
+      vector<double> binedges_Ystar = {0.0, 0.5, 1.0, 1.5, 2.0, 2.5};
+      vector<double> binedges_Yboost = {0.0, 0.5, 1.0, 1.5, 2.0, 2.5};
+      vector<double> binedges_ZPtC = {25., 30., 35., 40., 50., 60., 70., 80., 90., 100., 110., 130., 150., 170., 190., 220., 250., 400., 1000.};
+      vector<double> binedges_ZPtE = {25., 30., 35., 40., 45., 50., 60., 70., 80., 90., 100., 110., 130., 150., 170., 190., 250., 1000.};
+      vector<double> binedges_ZPtX = {25., 30., 40., 50., 70., 90., 110., 150., 250.};
+      vector<double> binedges_PhiStarEtaC = {0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2., 3., 4., 5., 7., 10., 15., 20., 30., 50.};
+      vector<double> binedges_PhiStarEtaE = {0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2., 3., 5., 10., 15., 50.};
+      vector<double> binedges_PhiStarEtaX = {0.4, 0.6, 0.8, 1.0, 5.};
+
+      _hist_Ys0Yb0_ZPt = bookHisto1D("ZPtY*0Yb0",binedges_ZPtC); 
+      _hist_Ys0Yb05_ZPt = bookHisto1D("ZPtY*0Yb05",binedges_ZPtC); 
+      _hist_Ys0Yb1_ZPt = bookHisto1D("ZPtY*0Yb1",binedges_ZPtC); 
+      _hist_Ys0Yb15_ZPt = bookHisto1D("ZPtY*0Yb25",binedges_ZPtC); 
+      _hist_Ys0Yb2_ZPt = bookHisto1D("ZPtY*0Yb2",binedges_ZPtE);
+      _hist_Ys05Yb0_ZPt = bookHisto1D("ZPtY*05Yb0",binedges_ZPtC); 
+      _hist_Ys05Yb05_ZPt = bookHisto1D("ZPtY*05Yb05",binedges_ZPtC); 
+      _hist_Ys05Yb1_ZPt = bookHisto1D("ZPtY*05Yb1",binedges_ZPtC); 
+      _hist_Ys05Yb15_ZPt = bookHisto1D("ZPtY*05Yb15",binedges_ZPtE);
+      _hist_Ys1Yb0_ZPt = bookHisto1D("ZPtY*1Yb0",binedges_ZPtC); 
+      _hist_Ys1Yb05_ZPt = bookHisto1D("ZPtY*1Yb05",binedges_ZPtC); 
+      _hist_Ys1Yb1_ZPt = bookHisto1D("ZPtY*1Yb15",binedges_ZPtE);
+      _hist_Ys15Yb0_ZPt  = bookHisto1D("ZPtY*15Yb0",binedges_ZPtE); 
+      _hist_Ys15Yb05_ZPt = bookHisto1D("ZPtY*15Yb05",binedges_ZPtE);
+      _hist_Ys2Yb0_ZPt = bookHisto1D("ZPtY*2Yb0",binedges_ZPtX);
+
+      _hist_Ys0Yb0_PhiStarEta = bookHisto1D("Phi*_etaY*0Yb0",binedges_PhiStarEtaC); 
+      _hist_Ys0Yb05_PhiStarEta = bookHisto1D("Phi*_etaY*0Yb05",binedges_PhiStarEtaC); 
+      _hist_Ys0Yb1_PhiStarEta = bookHisto1D("Phi*_etaY*0Yb1",binedges_PhiStarEtaC); 
+      _hist_Ys0Yb15_PhiStarEta = bookHisto1D("Phi*_etaY*0Yb25",binedges_PhiStarEtaC); 
+      _hist_Ys0Yb2_PhiStarEta = bookHisto1D("Phi*_etaY*0Yb2",binedges_PhiStarEtaE);
+      _hist_Ys05Yb0_PhiStarEta = bookHisto1D("Phi*_etaY*05Yb0",binedges_PhiStarEtaC); 
+      _hist_Ys05Yb05_PhiStarEta = bookHisto1D("Phi*_etaY*05Yb05",binedges_PhiStarEtaC); 
+      _hist_Ys05Yb1_PhiStarEta = bookHisto1D("Phi*_etaY*05Yb1",binedges_PhiStarEtaC); 
+      _hist_Ys05Yb15_PhiStarEta = bookHisto1D("Phi*_etaY*05Yb15",binedges_PhiStarEtaE);
+      _hist_Ys1Yb0_PhiStarEta = bookHisto1D("Phi*_etaY*1Yb0",binedges_PhiStarEtaC); 
+      _hist_Ys1Yb05_PhiStarEta = bookHisto1D("Phi*_etaY*1Yb05",binedges_PhiStarEtaC); 
+      _hist_Ys1Yb1_PhiStarEta = bookHisto1D("Phi*_etaY*1Yb15",binedges_PhiStarEtaE);
+      _hist_Ys15Yb0_PhiStarEta  = bookHisto1D("Phi*_etaY*15Yb0",binedges_PhiStarEtaE); 
+      _hist_Ys15Yb05_PhiStarEta = bookHisto1D("Phi*_etaY*15Yb05",binedges_PhiStarEtaE);
+      _hist_Ys2Yb0_PhiStarEta = bookHisto1D("Phi*_etaY*2Yb0",binedges_PhiStarEtaX);
+
     }
 
 
@@ -226,7 +267,8 @@ namespace Rivet {
       _hist_Jet1Eta -> fill(jets.at(0).eta());
       //_h["Jet1Eta"] -> fill(jets.at(0).eta());
 
-      _hist_Jet1Y -> fill(jets.at(0).rap());
+      const double rap_Jet1 = jets.at(0).rap();
+      _hist_Jet1Y -> fill(rap_Jet1);
       _hist_Jet2Y -> fill(jets.at(1).rap());
       _hist_Jet3Y -> fill(jets.at(3).rap());
       //_h["Jet1Y"] -> fill(jets.at(0).rap());
@@ -243,6 +285,80 @@ namespace Rivet {
       //_h["Jet1Pt"] -> fill(jets.at(0).pT()/GeV);
       //_h["Jet2Pt"] -> fill(jets.at(1).pT()/GeV);
       //_h["Jet3Pt"] -> fill(jets.at(2).pT()/GeV);
+
+      /// Fill triple differential histograms
+      const double rap_star = 0.5 * abs(rap_Z - rap_Jet1);
+      const double rap_boost = 0.5 * abs(rap_Z + rap_Jet1);
+      if (rap_star <= .5) {
+        if (rap_boost < .5) {
+          _hist_Ys0Yb0_ZPt -> fill(pT_Z);
+          _hist_Ys0Yb0_PhiStarEta -> fill(phistareta);
+        }
+        else if (rap_boost < 1.) {
+          _hist_Ys0Yb05_ZPt -> fill(pT_Z);
+          _hist_Ys0Yb05_PhiStarEta -> fill(phistareta);
+        }
+        else if (rap_boost < 1.5) {
+          _hist_Ys0Yb1_ZPt -> fill(pT_Z);
+          _hist_Ys0Yb1_PhiStarEta -> fill(phistareta);
+        }
+        else if (rap_boost < 2.) {
+          _hist_Ys0Yb15_ZPt -> fill(pT_Z);
+          _hist_Ys0Yb15_PhiStarEta -> fill(phistareta);
+        }
+        else {
+          _hist_Ys0Yb2_ZPt -> fill(pT_Z);
+          _hist_Ys0Yb2_PhiStarEta -> fill(phistareta);
+        }
+
+      }
+      else if (rap_star <= 1.) {
+        if (rap_boost < .5) {
+          _hist_Ys05Yb0_ZPt -> fill(pT_Z);
+          _hist_Ys05Yb0_PhiStarEta -> fill(phistareta);
+        }
+        else if (rap_boost < 1.) {
+          _hist_Ys05Yb05_ZPt -> fill(pT_Z);
+          _hist_Ys05Yb05_PhiStarEta -> fill(phistareta);
+        }
+        else if (rap_boost < 1.5) {
+          _hist_Ys05Yb1_ZPt -> fill(pT_Z);
+          _hist_Ys05Yb1_PhiStarEta -> fill(phistareta);
+        }
+        else {
+          _hist_Ys05Yb15_ZPt -> fill(pT_Z);
+          _hist_Ys05Yb15_PhiStarEta -> fill(phistareta);
+        }
+
+      }
+      else if (rap_star <= 1.5) {
+        if (rap_boost < .5) {
+          _hist_Ys1Yb0_ZPt -> fill(pT_Z);
+          _hist_Ys1Yb0_PhiStarEta -> fill(phistareta);
+        }
+        else if (rap_boost < 1.) {
+          _hist_Ys1Yb05_ZPt -> fill(pT_Z);
+          _hist_Ys1Yb05_PhiStarEta -> fill(phistareta);
+        }
+        else {
+          _hist_Ys1Yb1_ZPt -> fill(pT_Z);
+          _hist_Ys1Yb1_PhiStarEta -> fill(phistareta);
+        }
+      }
+      else if (rap_star <= 2.) {
+        if (rap_boost < .5) {
+          _hist_Ys15Yb0_ZPt -> fill(pT_Z);
+          _hist_Ys15Yb0_PhiStarEta -> fill(phistareta);
+        }
+        else {
+          _hist_Ys15Yb05_ZPt -> fill(pT_Z);
+          _hist_Ys15Yb05_PhiStarEta -> fill(phistareta);
+        }
+      }
+      else {
+        _hist_Ys2Yb0_ZPt -> fill(pT_Z);
+        _hist_Ys2Yb0_PhiStarEta -> fill(phistareta);
+      }
 
     }
 
@@ -282,6 +398,38 @@ namespace Rivet {
       scale(_hist_PhiStarEta, sf);
       
       scale(_hist_MET, sf);
+
+      scale(_hist_Ys0Yb0_ZPt, sf);
+      scale(_hist_Ys0Yb05_ZPt, sf);
+      scale(_hist_Ys0Yb1_ZPt, sf);
+      scale(_hist_Ys0Yb15_ZPt, sf);
+      scale(_hist_Ys0Yb2_ZPt, sf);
+      scale(_hist_Ys05Yb0_ZPt, sf);
+      scale(_hist_Ys05Yb05_ZPt, sf);
+      scale(_hist_Ys05Yb1_ZPt, sf);
+      scale(_hist_Ys05Yb15_ZPt, sf);
+      scale(_hist_Ys1Yb0_ZPt, sf);
+      scale(_hist_Ys1Yb05_ZPt, sf);
+      scale(_hist_Ys1Yb1_ZPt, sf);
+      scale(_hist_Ys15Yb0_ZPt, sf);
+      scale(_hist_Ys15Yb05_ZPt, sf);
+      scale(_hist_Ys2Yb0_ZPt, sf);
+
+      scale(_hist_Ys0Yb0_PhiStarEta, sf);
+      scale(_hist_Ys0Yb05_PhiStarEta, sf);
+      scale(_hist_Ys0Yb1_PhiStarEta, sf);
+      scale(_hist_Ys0Yb15_PhiStarEta, sf);
+      scale(_hist_Ys0Yb2_PhiStarEta, sf);
+      scale(_hist_Ys05Yb0_PhiStarEta, sf);
+      scale(_hist_Ys05Yb05_PhiStarEta, sf);
+      scale(_hist_Ys05Yb1_PhiStarEta, sf);
+      scale(_hist_Ys05Yb15_PhiStarEta, sf);
+      scale(_hist_Ys1Yb0_PhiStarEta, sf);
+      scale(_hist_Ys1Yb05_PhiStarEta, sf);
+      scale(_hist_Ys1Yb1_PhiStarEta, sf);
+      scale(_hist_Ys15Yb0_PhiStarEta, sf);
+      scale(_hist_Ys15Yb05_PhiStarEta, sf);
+      scale(_hist_Ys2Yb0_PhiStarEta, sf);
       
       /* for (auto hist : _h) {
         scale(hist.second, sf); // norm to cross section
@@ -298,6 +446,18 @@ namespace Rivet {
     Histo1DPtr _hist_NMus, _hist_MuPlusPt, _hist_MuPlusEta, _hist_MuPlusPhi, _hist_MuMinusPt, _hist_MuMinusEta, _hist_MuMinusPhi,
                _hist_ZY, _hist_ZM, _hist_ZPhi, _hist_NJets, _hist_Jet1Y, _hist_Jet1Phi, _hist_Jet2Y, _hist_Jet2Phi, _hist_Jet3Y, _hist_Jet3Phi, _hist_MET;
     Histo1DPtr _hist_ZPt, _hist_Jet1Pt, _hist_Jet2Pt, _hist_Jet3Pt, _hist_JetAvePt, _hist_Jet1Eta, _hist_PhiStarEta;
+
+    Histo1DPtr _hist_Ys0Yb0_ZPt, _hist_Ys0Yb05_ZPt, _hist_Ys0Yb1_ZPt, _hist_Ys0Yb15_ZPt, _hist_Ys0Yb2_ZPt;
+    Histo1DPtr _hist_Ys05Yb0_ZPt, _hist_Ys05Yb05_ZPt, _hist_Ys05Yb1_ZPt, _hist_Ys05Yb15_ZPt;
+    Histo1DPtr _hist_Ys1Yb0_ZPt, _hist_Ys1Yb05_ZPt, _hist_Ys1Yb1_ZPt;
+    Histo1DPtr _hist_Ys15Yb0_ZPt, _hist_Ys15Yb05_ZPt;
+    Histo1DPtr _hist_Ys2Yb0_ZPt;
+
+    Histo1DPtr _hist_Ys0Yb0_PhiStarEta, _hist_Ys0Yb05_PhiStarEta, _hist_Ys0Yb1_PhiStarEta, _hist_Ys0Yb15_PhiStarEta, _hist_Ys0Yb2_PhiStarEta;
+    Histo1DPtr _hist_Ys05Yb0_PhiStarEta, _hist_Ys05Yb05_PhiStarEta, _hist_Ys05Yb1_PhiStarEta, _hist_Ys05Yb15_PhiStarEta;
+    Histo1DPtr _hist_Ys1Yb0_PhiStarEta, _hist_Ys1Yb05_PhiStarEta, _hist_Ys1Yb1_PhiStarEta;
+    Histo1DPtr _hist_Ys15Yb0_PhiStarEta, _hist_Ys15Yb05_PhiStarEta;
+    Histo1DPtr _hist_Ys2Yb0_PhiStarEta;
     // map<string, Histo1DPtr> _h;
 
     //@}
