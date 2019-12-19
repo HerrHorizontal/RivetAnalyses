@@ -256,36 +256,44 @@ namespace Rivet {
 
       /// Fill jet related histograms
       _hist_NJets -> fill(jets.size());
-      //_h["NJets"] -> fill(jets.size());
 
-      _hist_Jet1Phi -> fill(jets.at(0).phi() - PI);
-      _hist_Jet2Phi -> fill(jets.at(1).phi( - PI));
-      _hist_Jet3Phi -> fill(jets.at(2).phi() - PI);
-      //_h["Jet1Phi"] -> fill(jets.at(0).phi());
-      //_h["Jet2Phi"] -> fill(jets.at(1).phi());
-      //_h["Jet3Phi"] -> fill(jets.at(2).phi());
+      const double phi_Jet1 = jets.at(0).phi() - PI;
+      const double rap_Jet1 = jets.at(0).rap();
+      const double pT_aveJet = sum(jets, pT, 0)/GeV/jets.size();
+      const double pT_Jet1 = jets.at(0).pT()/GeV;
+      //// in case there are not more than one jet
+      const double rap_Jet2 = -999;
+      const double rap_Jet3 = -999;
+      const double phi_Jet2 = -999;
+      const double phi_Jet3 = -999;
+      const double pT_Jet2 = -999;
+      const double pT_Jet3 = -999;
+      if (jets.size() > 1) {
+        rap_Jet2 = jets.at(1).rap();
+        phi_Jet2 = jets.at(1).phi() - PI;
+        pT_Jet2 = jets.at(1).pT()/GeV;
+      }
+      if (jets.size() >2) {
+        rap_Jet3 = jets.at(2).rap();
+        phi_Jet3 = jets.at(2).phi() - PI;
+        pT_Jet3 = jets.at(2).pT()/GeV;
+      }
+
+      _hist_Jet1Phi -> fill(phi_Jet1);
+      _hist_Jet2Phi -> fill(phi_Jet2);
+      _hist_Jet3Phi -> fill(phi_Jet3);
 
       _hist_Jet1Eta -> fill(jets.at(0).eta());
-      //_h["Jet1Eta"] -> fill(jets.at(0).eta());
 
-      const double rap_Jet1 = jets.at(0).rap();
       _hist_Jet1Y -> fill(rap_Jet1);
-      _hist_Jet2Y -> fill(jets.at(1).rap());
-      _hist_Jet3Y -> fill(jets.at(3).rap());
-      //_h["Jet1Y"] -> fill(jets.at(0).rap());
-      //_h["Jet2Y"] -> fill(jets.at(1).rap());
-      //_h["Jet3Y"] -> fill(jets.at(3).rap());
+      _hist_Jet2Y -> fill(rap_Jet2);
+      _hist_Jet3Y -> fill(rap_Jet3);
 
-      const double pT_aveJet = sum(jets, pT, 0)/GeV/jets.size();
       _hist_JetAvePt -> fill(pT_aveJet);
-      //_h["JetAvePt"] -> fill(pT_aveJet);
 
-      _hist_Jet1Pt -> fill(jets.at(0).pT()/GeV);
-      _hist_Jet2Pt -> fill(jets.at(1).pT()/GeV);
-      _hist_Jet3Pt -> fill(jets.at(2).pT()/GeV);
-      //_h["Jet1Pt"] -> fill(jets.at(0).pT()/GeV);
-      //_h["Jet2Pt"] -> fill(jets.at(1).pT()/GeV);
-      //_h["Jet3Pt"] -> fill(jets.at(2).pT()/GeV);
+      _hist_Jet1Pt -> fill(pT_Jet1);
+      _hist_Jet2Pt -> fill(pT_Jet2);
+      _hist_Jet3Pt -> fill(pT_Jet3);  
 
       /// Fill triple differential histograms
       const double rap_star = 0.5 * abs(rap_Z - rap_Jet1);
