@@ -1,12 +1,12 @@
 Name: ZplusJet_Partonic
 Year: <Insert year of publication>
-Summary: <Insert short ZplusJet_Partonic description>
-Experiment: <Insert the experiment name>
-Collider: <Insert the collider name>
+Summary: Crosscheck and final observables on the partonic final state for the tripple differential Z+jet meausrement performed by the CMS collaboration
+Experiment: CMS
+Collider: LHC
 InspireID: <Insert the Inspire ID>
 Status: UNVALIDATED
 Authors:
- - Your Name <your@email.address>
+ - Maximilian Horzela <maximilian.horzela@kit.edu>
 #References:
 #- '<Example: Eur.Phys.J. C76 (2016) no.7, 392>'
 #- '<Example: DOI:10.1140/epjc/s10052-016-4184-8>'
