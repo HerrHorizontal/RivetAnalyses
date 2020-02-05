@@ -1,8 +1,21 @@
-BEGIN PLOT /ZplusJet_Partonic/d01-x01-y01
-Title=[Insert title for histogram d01-x01-y01 here]
-XLabel=[Insert $x$-axis label for histogram d01-x01-y01 here]
-YLabel=[Insert $y$-axis label for histogram d01-x01-y01 here]
-# + any additional plot settings you might like, see make-plots documentation
-END PLOT
+# BEGIN PLOT /ZplusJet_Partonic/*
+LogX=1
+RatioPlotYMin=0.8
+RatioPlotYMax=1.2
+RatioPlotYLabel=NP corr.
+NormalizeToIntegral=1
+# END PLOT
+
+# BEGIN HISTOGRAM /ZplusJet_Partonic/*
+ErrorBars=1
+# END HISTOGRAM
+
+# BEGIN HISTOGRAM /ZplusJet_Partonic/Phi*
+XLabel=$\phi^*_{\eta}$
+# END HISTOGRAM
+
+# BEGIN HISTOGRAM /ZplusJet_Partonic/ZPt*
+XLabel=$p_{T_Z}$/GeV
+# END HISTOGRAM
 
 # ... add more histograms as you need them ...
