@@ -241,7 +241,7 @@ namespace Rivet {
       // const double sf = crossSection() / picobarn / sumOfWeights();
       const double sf = 1.0;
 
-      scale(_hist_NJets);
+      scale(_hist_NJets, sf);
 
       scale(_hist_Ys0Yb0_ZPt, sf);
       scale(_hist_Ys0Yb05_ZPt, sf);
