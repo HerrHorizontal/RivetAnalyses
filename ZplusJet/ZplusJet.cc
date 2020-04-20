@@ -239,7 +239,7 @@ namespace Rivet {
 
       // normalize(_h_YYYY); // normalize to unity
       // const double sf = crossSection() / picobarn / sumOfWeights();
-      const double sf = 1.0
+      const double sf = 1.0;
 
       scale(_hist_NJets);
 
