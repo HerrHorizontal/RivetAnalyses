@@ -58,7 +58,7 @@ namespace Rivet {
       // _hist_ZY = bookHisto1D("ZY", 12, -2.4, 2.4);
       // _hist_ZM = bookHisto1D("ZM", 20, 71, 111);
       // _hist_ZPhi = bookHisto1D("ZPhi", 30, -3.14159, 3.14159);
-      // _hist_NJets = bookHisto1D("NJets", 10, 0, 10);
+      _hist_NJets = bookHisto1D("NJets", 10, 0.5, 10.5);
       // _hist_Jet1Y = bookHisto1D("Jet1Y", 12, -2.4, 2.4);
       // _hist_Jet1Phi = bookHisto1D("Jet1Phi", 31, -3.142, 3.142);
       // _hist_Jet2Y = bookHisto1D("Jet2Y", 30, -2.4, 2.4);
@@ -255,7 +255,7 @@ namespace Rivet {
       //_h["PhiStarEta"] -> fill(phistareta);
 
       /// Fill jet related histograms
-      // _hist_NJets -> fill(jets.size());
+      _hist_NJets -> fill(jets.size());
 
       // const double phi_Jet1 = jets.at(0).phi() - PI;
       const double rap_Jet1 = jets.at(0).rap();
@@ -380,7 +380,8 @@ namespace Rivet {
     void finalize() {
 
       //normalize(_h_YYYY); // normalize to unity
-      const double sf = crossSection() / picobarn / sumOfWeights();
+      // const double sf = crossSection() / picobarn / sumOfWeights();
+      const double sf = 1.0;
 
       // scale(_hist_NMus, sf);
       // scale(_hist_MuPlusPt, sf);
@@ -395,7 +396,7 @@ namespace Rivet {
       // scale(_hist_ZM, sf);
       // scale(_hist_ZPhi, sf);
 
-      // scale(_hist_NJets, sf);
+      scale(_hist_NJets, sf);
       // scale(_hist_JetAvePt, sf);
       // scale(_hist_Jet1Pt, sf);
       // scale(_hist_Jet1Eta, sf);
@@ -457,8 +458,10 @@ namespace Rivet {
     //@{
 
     // Histo1DPtr _hist_NMus, _hist_MuPlusPt, _hist_MuPlusEta, _hist_MuPlusPhi, _hist_MuMinusPt, _hist_MuMinusEta, _hist_MuMinusPhi,
-    //            _hist_ZY, _hist_ZM, _hist_ZPhi, _hist_NJets, _hist_Jet1Y, _hist_Jet1Phi, _hist_Jet2Y, _hist_Jet2Phi, _hist_Jet3Y, _hist_Jet3Phi, _hist_MET;
+    //            _hist_ZY, _hist_ZM, _hist_ZPhi, _hist_Jet1Y, _hist_Jet1Phi, _hist_Jet2Y, _hist_Jet2Phi, _hist_Jet3Y, _hist_Jet3Phi, _hist_MET;
     // Histo1DPtr _hist_ZPt, _hist_Jet1Pt, _hist_Jet2Pt, _hist_Jet3Pt, _hist_JetAvePt, _hist_Jet1Eta, _hist_PhiStarEta;
+
+    Histo1DPtr _hist_NJets;
 
     Histo1DPtr _hist_Ys0Yb0_ZPt, _hist_Ys0Yb05_ZPt, _hist_Ys0Yb1_ZPt, _hist_Ys0Yb15_ZPt, _hist_Ys0Yb2_ZPt;
     Histo1DPtr _hist_Ys05Yb0_ZPt, _hist_Ys05Yb05_ZPt, _hist_Ys05Yb1_ZPt, _hist_Ys05Yb15_ZPt;

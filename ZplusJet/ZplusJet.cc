@@ -58,6 +58,8 @@ namespace Rivet {
       vector<double> binedges_PhiStarEtaE = {0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2., 3., 5., 10., 15., 50.};
       vector<double> binedges_PhiStarEtaX = {0.4, 0.6, 0.8, 1.0, 5.};
 
+      _hist_NJets = bookHisto1D("NJets", 10, 0.5, 10.5);
+
       _hist_Ys0Yb0_ZPt = bookHisto1D("ZPtY*0Yb0",binedges_ZPtC); 
       _hist_Ys0Yb05_ZPt = bookHisto1D("ZPtY*0Yb05",binedges_ZPtC); 
       _hist_Ys0Yb1_ZPt = bookHisto1D("ZPtY*0Yb1",binedges_ZPtC); 
@@ -141,6 +143,9 @@ namespace Rivet {
       }
 
       if (!(_bosoncandidateexists)) vetoEvent;
+
+      /// Fill jet related histograms
+      _hist_NJets -> fill(jets.size());
 
       /// Fill triple differential histograms
       const double rap_Z = (_muon.mom() + _antimuon.mom()).rap();
@@ -232,8 +237,11 @@ namespace Rivet {
     /// Normalise histograms etc., after the run
     void finalize() {
 
-      //normalize(_h_YYYY); // normalize to unity
-      const double sf = crossSection() / picobarn / sumOfWeights();
+      // normalize(_h_YYYY); // normalize to unity
+      // const double sf = crossSection() / picobarn / sumOfWeights();
+      const double sf = 1.0
+
+      scale(_hist_NJets);
 
       scale(_hist_Ys0Yb0_ZPt, sf);
       scale(_hist_Ys0Yb05_ZPt, sf);
@@ -276,6 +284,8 @@ namespace Rivet {
     //@{
 
     /// Control Histograms
+    Histo1DPtr _hist_NJets;
+
     Histo1DPtr _hist_Ys0Yb0_ZPt, _hist_Ys0Yb05_ZPt, _hist_Ys0Yb1_ZPt, _hist_Ys0Yb15_ZPt, _hist_Ys0Yb2_ZPt;
     Histo1DPtr _hist_Ys05Yb0_ZPt, _hist_Ys05Yb05_ZPt, _hist_Ys05Yb1_ZPt, _hist_Ys05Yb15_ZPt;
     Histo1DPtr _hist_Ys1Yb0_ZPt, _hist_Ys1Yb05_ZPt, _hist_Ys1Yb1_ZPt;

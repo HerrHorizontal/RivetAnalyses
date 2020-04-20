@@ -58,7 +58,7 @@ namespace Rivet {
       _hist_ZY = bookHisto1D("ZY", 12, -2.4, 2.4);
       _hist_ZM = bookHisto1D("ZM", 20, 71, 111);
       _hist_ZPhi = bookHisto1D("ZPhi", 30, -3.14159, 3.14159);
-      _hist_NJets = bookHisto1D("NJets", 10, 0, 10);
+      _hist_NJets = bookHisto1D("NJets", 10, 0.5, 10.5);
       _hist_Jet1Y = bookHisto1D("Jet1Y", 12, -2.4, 2.4);
       _hist_Jet1Phi = bookHisto1D("Jet1Phi", 31, -3.142, 3.142);
       _hist_Jet2Y = bookHisto1D("Jet2Y", 30, -2.4, 2.4);
