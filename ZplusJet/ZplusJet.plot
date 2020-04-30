@@ -20,5 +20,10 @@ XLabel=$p_{T_Z}$/GeV
 YLabel=$\frac{1}{N}\frac{dN}{dp_{T_Z} dy^* dy_b}$/$\frac{1}{\text{GeV}}$
 # END HISTOGRAM
 
+# BEGIN PLOT /ZplusJet/NJet*
+LogX=0
+XLabel=$N_{\text{jets}}$
+YLabel=$\frac{1}{N}\frac{dN}{dN_{\text{jets}} dy^* dy_b}$
+# END PLOT
 
 # ... add more histograms as you need them ...
