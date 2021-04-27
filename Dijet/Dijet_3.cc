@@ -173,10 +173,10 @@ namespace Rivet {
     void finalize() {
 
       // normalize histograms to cross section
-      normalize(m_hist_ybys_ptave_ak04, crossSection()/picobarn/sumOfWeights());
-      normalize(m_hist_ybys_mass_ak04,  crossSection()/picobarn/sumOfWeights());
-      normalize(m_hist_ybys_ptave_ak08, crossSection()/picobarn/sumOfWeights());
-      normalize(m_hist_ybys_mass_ak08,  crossSection()/picobarn/sumOfWeights());
+      scale(m_hist_ybys_ptave_ak04, crossSection()/picobarn/sumOfWeights());
+      scale(m_hist_ybys_mass_ak04,  crossSection()/picobarn/sumOfWeights());
+      scale(m_hist_ybys_ptave_ak08, crossSection()/picobarn/sumOfWeights());
+      scale(m_hist_ybys_mass_ak08,  crossSection()/picobarn/sumOfWeights());
 
     }
 
@@ -192,7 +192,7 @@ namespace Rivet {
 
   private:
 
-    /** index of (ystar, yboost) region (integer between 0 and 15: YB_00_05_YS_00_05 --> 0, YB_05_05_YSyb1ys0 --> 1 ...)
+    /** index of (ystar, yboost) region (integer between 0 and 15: YB_00_05_YS_00_05 --> 0, YB_05_10_YS_00_05 --> 1 ...)
       * or -1 if out of bounds.
       * `idx_yboost` and `idx_ystar` should be one of {0, 1, 2, 3, 4}
       */
